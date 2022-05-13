@@ -103,6 +103,8 @@ $--greenBlue: --greenBlue;
 $--main: --main;
 
 // 自定義
+$--blockBG: --blockBG;
+
 // 登入頁面, 因為深色與淺色是一樣的
 $--loginBG: --loginBG;
 $--loginBGL: --loginBGL;
@@ -225,13 +227,15 @@ $dareknShared2: #717171;
 
 // 暗黑
 $theme-map-darken: (
+  $--blockBG: $white,
+  $--font: $black,
+
   $--loginBG: $black,
   $--ipt: $iptD,
   $--iptIcon: $iptD,
   $--hover: $orangeL,
   $--iptFocus: $main,
   $--bG: $dareknShared1,
-  $--font: $white,
   $--border: $dareknShared1,
   $--line: #4e4e4e,
   $--navBG: #222221,
@@ -286,13 +290,15 @@ $lightsShared2: $iptD;
 
 // 明亮
 $theme-map-lights: (
+  $--blockBG: $black,
+  $--font: $white,
+
   $--loginBG: $white,
   $--ipt: $iptL,
   $--iptIcon: $iptL,
   $--hover: $orangeL,
   $--iptFocus: $main,
   $--bG: $lightsShared1,
-  $--font: #1f2f39,
   $--border: $lightsShared1,
   $--line: #e6e6e6,
   $--navBG: $white,

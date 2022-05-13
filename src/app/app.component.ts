@@ -80,11 +80,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     // 地圖控制器
     this.map.addControl(new mapboxgl.NavigationControl());
 
-    // 標記點被點擊
-    this.map.on('click', (e) => {
-      const coordinates = [e.lngLat.lng, e.lngLat.lat];
-
-    });
+    // 不開放旋轉
+    this.map.dragRotate.disable();
   }
 
   /**
@@ -125,44 +122,58 @@ export class AppComponent implements OnInit, AfterViewInit {
   /** 新增標記點 */
   addMark(): void {
     this.map.on('load', () => {
-      // 新增 map Source 資料
-      this.map.addSource('COVID19AntigenSelfTest', {
-        type: 'geojson',
-        data: { 
-          type: 'FeatureCollection',
-          features: []
-        }
-      })
+      // 獲取標記點圖片
+      this.map.loadImage('../assets/icon/AntigenSelfTest.png', (error, image: any)=>{
+        if (error) throw error;
+        this.map.addImage('AntigenSelfTest-marker', image);
 
-      // 轉換標記點格式
-      let newMarker: GeoJSON[] = [];
-      this.markers.map((item: any) => {
-        if (item.經度 && item.緯度) {
-          newMarker.push(new GeoJSON([item.經度, item.緯度], { message: 'test' }));
-        }
-      })
+        // 新增 map Source 資料
+        this.map.addSource('COVID19AntigenSelfTest', {
+          type: 'geojson',
+          data: {
+            type: 'FeatureCollection',
+            features: []
+          }
+        })
 
-      // 導入標記點
-      let source: any = this.map.getSource('COVID19AntigenSelfTest');
-      source.setData(new FeatureCollection(newMarker));      
+        // 轉換標記點格式
+        let newMarker: GeoJSON[] = [];
+        this.markers.map((item: any) => {
+          if (item.經度 && item.緯度) {
+            newMarker.push(new GeoJSON([item.經度, item.緯度], item));
+          }
+        })
 
-      // 創建Layer
-      this.map.addLayer({
-        id: 'COVID19AntigenSelfTest',
-        source: 'COVID19AntigenSelfTest',
-        type: 'symbol',
-        layout : {
-          'text-field': '{message}',
-          'text-size': 24,
-          'text-transform': 'uppercase',
-          'icon-offset': [0, 1.5]
-        },
-        paint: {
-          'text-color': '#f16624',
-          'text-halo-color': '#fff',
-          'text-halo-width': 2
-        }
-      })
+        // 導入標記點
+        let source: any = this.map.getSource('COVID19AntigenSelfTest');
+        source.setData(new FeatureCollection(newMarker));
+
+        // 創建Layer
+        this.map.addLayer({
+          id: 'COVID19AntigenSelfTestLayer',
+          source: 'COVID19AntigenSelfTest',
+          type: 'symbol',
+          layout: {
+            'icon-image': 'AntigenSelfTest-marker',
+          },
+        })
+
+        // 標記點被點擊
+        this.map.on('click', 'COVID19AntigenSelfTestLayer', (e: any) => {
+          const coordinates = [e.lngLat.lng, e.lngLat.lat];
+          console.log(e.features[0].properties);
+        });
+
+        // 標記點滑鼠移入
+        this.map.on('mouseenter', 'COVID19AntigenSelfTestLayer', () => {
+          this.map.getCanvas().style.cursor = 'pointer';
+        });
+
+        // 標記點滑鼠移出
+        this.map.on('mouseleave', 'COVID19AntigenSelfTestLayer', () => {
+          this.map.getCanvas().style.cursor = '';
+        });
+      });
     });
   }
 }

@@ -73,7 +73,7 @@
 .gridBlock {
   height: 100%;
   max-height: 100%;
-  @include flex(CNo, flex-start);
+  @extend %flexNoWrapBetweenStart;
   overflow: hidden;
 
   & > * {
