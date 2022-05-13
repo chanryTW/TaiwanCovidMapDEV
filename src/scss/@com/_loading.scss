@@ -1,0 +1,153 @@
+.loadBox {
+  text-align: center;
+
+  /** 類型0 Scroll Load */
+  .ballBeatBox {
+    > div {
+      background-color: theme-var($--tableBtn);
+      width: 10px;
+      height: 10px;
+      border-radius: 100%;
+      margin: 2px;
+      animation-fill-mode: both;
+
+      display: inline-block;
+      animation: ball-beat 0.7s 0s infinite linear;
+
+      &:nth-child(2n-1) {
+        animation-delay: -0.35s !important;
+      }
+    }
+  }
+  @keyframes ball-beat {
+    50% {
+      opacity: 0.2;
+      transform: scale(0.75);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /** 類型1 full loading */
+  .fixBGBlock {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    @include flex(RNo, center);
+    background-color: theme-var($--bG);
+    z-index: 9999999;
+
+    > div {
+      // Logo
+      svg {
+        width: 150px;
+      }
+      .logoBox {
+        .y {
+          @include fullPageLoading(y, 0%, 15%, 44%, 'none');
+        }
+        .a {
+          @include fullPageLoading(a, 0%, 5%, 20%, 55%);
+        }
+        .g {
+          @include fullPageLoading(g, 0%, 13%, 30%, 65%);
+        }
+        .e {
+          @include fullPageLoading(e, 0%, 25%, 45%, 80%);
+        }
+        .o {
+          @include fullPageLoading(o, 0%, 35%, 55%, 'none');
+        }
+      }
+
+      h6 {
+        margin-top: $space - 10;
+        padding-left: 9px;
+      }
+    }
+  }
+
+  /** 類型2 */
+  // 文字
+  .textBox {
+    @include loadBg();
+    height: 20px;
+    border-radius: $borderRMin2;
+    margin: 20px auto;
+    margin-left: 0;
+    width: 100%;
+
+    // 方塊樣式
+    &.box {
+      height: 100px;
+    }
+
+    &:nth-child(1) {
+    }
+    &:nth-child(2) {
+      width: 80%;
+    }
+    &:nth-child(3) {
+      width: 74%;
+    }
+    &:nth-child(4) {
+      width: 80%;
+    }
+  }
+  // 顏色
+  &.style0 {
+    padding: $space - 10 $space;
+    .textBox {
+      background-image: linear-gradient(
+        70deg,
+        theme-var($--loadBG1) 0%,
+        theme-var($--loadBG2) 10%,
+        theme-var($--loadBG1) 20%,
+        theme-var($--loadBG1) 100%
+      );
+    }
+  }
+  &.style1 {
+    padding: $space - 10 $space;
+    .textBox {
+      background-image: linear-gradient(70deg, #3e3e3e 0%, #363636 10%, #3e3e3e 20%, #3e3e3e 100%);
+    }
+  }
+}
+
+// 載入時動畫背景（變換深淺）
+.loadBg {
+  @include loadBg();
+}
+// 載入時動畫背景（dashboard用 不變換深淺）
+.loadBgDashboard {
+  @include loadBgDashboard();
+}
+
+// 滾動加載元件
+.scrollLoad {
+  padding: 0 $space;
+  margin: $space auto $space + 5;
+  position: sticky;
+  left: 0;
+
+  .listEnd {
+    height: 10px;
+  }
+  .iconBox {
+    text-align: center;
+    & > h6 {
+      color: theme-var($--loadTxt);
+      font-weight: bold;
+      display: block;
+    }
+    & > mat-icon {
+      color: theme-var($--loadTxt);
+      margin-right: 6px;
+    }
+  }
+}

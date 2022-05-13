@@ -1,0 +1,243 @@
+.navBlock {
+  width: var(--navW);
+  background-color: theme-var($--navBG);
+  overflow: hidden;
+  border-radius: 0 $borderRMax $borderRMax 0;
+
+  @include maxScreen(ipadRMax) {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: $z-idx-1 + 1;
+  }
+
+  nav {
+    width: 100%;
+    @include flex(CNo, space-between, stretch, stretch);
+    height: 100%;
+    overflow: hidden;
+
+    & > div {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .topBlock {
+    cursor: pointer;
+    @extend %flexNoWrapCenter;
+    padding: $space + 10 $space $space - 5;
+
+    & > * {
+      margin-right: $space - 5;
+    }
+  }
+
+  .listBlock {
+    padding: 0;
+
+    ol {
+      padding: $space 0;
+
+      &.sysBlock {
+        padding-top: 0;
+      }
+
+      &.sysBlock {
+        li {
+          &:not(.title) {
+            padding: $space - 3 $space;
+          }
+        }
+      }
+    }
+
+    li {
+      color: theme-var($--navFontColor);
+      @extend %flexNoWrapStartCenter;
+      padding: $space + 3 $space;
+      cursor: pointer;
+      position: relative;
+
+      &.title {
+        cursor: auto;
+        div {
+          background-color: theme-var($--navBG);
+          position: relative;
+          z-index: 1;
+          color: theme-var($--navFontColor);
+        }
+        p {
+          font-size: 0.9em;
+        }
+        &:after {
+          content: '';
+          width: 90%;
+          height: 1px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateX(-50%);
+          right: 0;
+          background-color: theme-var($--border);
+          z-index: 0;
+        }
+      }
+
+      p {
+        color: theme-var($--navFontColor);
+        word-break: break-word;
+        line-height: 1.2;
+        padding: 0 4px;
+        text-transform: uppercase;
+      }
+
+      .matIcon,
+      p {
+        position: relative;
+        z-index: 1;
+      }
+
+      .matIcon,
+      b {
+        flex: 0 0 auto;
+      }
+
+      b {
+        width: 6px;
+        height: 6px;
+        border-radius: 100%;
+        background-color: var(--gray);
+        margin-left: auto;
+        position: relative;
+        z-index: 1;
+        visibility: hidden;
+      }
+
+      &.running,
+      &.ok {
+        b {
+          visibility: visible;
+          &::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border-radius: 100%;
+            animation: warn 1.5s ease-out 0s infinite;
+            background-color: var(--gray);
+            z-index: 1;
+          }
+        }
+      }
+
+      &.running {
+        b {
+          background-color: var(--red);
+          &::after {
+            background-color: var(--red);
+          }
+        }
+      }
+      &.ok {
+        b {
+          background-color: var(--green);
+          &::after {
+            background-color: var(--green);
+          }
+        }
+      }
+
+      &:hover {
+        .matIcon,
+        p {
+          color: var(--main);
+        }
+      }
+
+      &.active {
+        .matIcon,
+        p {
+          color: var(--white);
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          width: 94%;
+          z-index: 0;
+          background-color: var(--main);
+          height: 80%;
+          border-radius: 10px;
+          box-shadow: 0 0 10px var(--main);
+          @include CenterBlock;
+        }
+      }
+    }
+  }
+
+  .configBlock {
+    border-top: 1px solid theme-var($--border);
+  }
+
+  .userBlock {
+    @extend %flexNoWrapStartCenter;
+    border-bottom: 1px solid theme-var($--border);
+    padding: $space;
+    position: relative;
+  }
+
+  .settingBtn {
+    margin-top: $space - 8;
+    .customBtn {
+      padding: 0;
+      padding-right: $space - 5;
+
+      .matIcon {
+        color: theme-var($--rangeBG);
+      }
+
+      &:hover,
+      &.active {
+        .matIcon {
+          color: var(--main);
+        }
+      }
+    }
+  }
+
+  .configBlock {
+    ol {
+      @include flex(RNo, stretch, stretch, stretch);
+      position: relative;
+      li {
+        @include calc('width', '100% / 3');
+        & > * {
+          text-align: center;
+        }
+        .mat-icon {
+          color: theme-var($--navFontColor);
+          display: block;
+          margin: 0 auto;
+        }
+        &:hover {
+          .mat-icon {
+            fill: var(--main);
+          }
+        }
+      }
+      .line {
+        &::after {
+          height: 100%;
+          background-color: theme-var($--border);
+        }
+      }
+    }
+  }
+}

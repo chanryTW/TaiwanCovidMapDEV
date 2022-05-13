@@ -1,0 +1,301 @@
+// scrollbar
+@media screen and (min-width: ($ipadCMax + 1)) {
+  ::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(var(--rangeBG-rgb), 0.8);
+    border-radius: 0;
+
+    &:hover {
+      background-color: var(--main);
+    }
+  }
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+// icon
+.mat-icon.matIcon {
+  width: 20px;
+  height: 20px;
+  display: block;
+
+  &.spin {
+    svg {
+      animation-name: matIconAnimate;
+      animation-duration: 0.8s;
+      animation-iteration-count: infinite;
+      transform-origin: 50% 50%;
+      display: inline-block;
+    }
+  }
+}
+
+.scrollBlock {
+  height: 100%;
+  overflow: hidden;
+  padding: $space - 10;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+  &.y {
+    overflow-y: auto;
+  }
+  &.x {
+    overflow-x: auto;
+  }
+  @include maxScreen(ipadRMax) {
+    overflow: unset !important;
+    height: auto !important;
+  }
+}
+
+.fullScreen {
+  .navBlock,
+  header {
+    display: none !important;
+  }
+  .outsideContentBlock {
+    width: 100%;
+  }
+  .scrollBlock {
+    padding-top: 0;
+  }
+  .fixBlock {
+    &.l {
+      left: 0 !important;
+    }
+
+    &.r {
+      right: 0 !important;
+    }
+  }
+}
+
+.LBlockHide {
+  .LBlock.hideBlock {
+    max-width: 40px;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    .scrollBlock {
+      padding: 0;
+      display: none;
+    }
+
+    & + .RBlock {
+      max-width: 100%;
+    }
+  }
+  .tableBtnBlock {
+    padding-left: 50px;
+  }
+
+  .layoutDetail .info > .LBlock + .RBlock .tableBtnBlock {
+    padding-left: 40px;
+  }
+
+  .LBlockBtn {
+    right: 3px;
+    border-radius: 100%;
+    box-shadow: $shadow;
+    .customBtn {
+      padding: 4px;
+    }
+  }
+}
+
+.wrapperBlock {
+  @include deviceSpace;
+  @extend %flexNoWrapStartStretch;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  @include maxScreen(ipadRMax) {
+    overflow: unset;
+    display: block;
+    height: auto;
+  }
+}
+
+.outsideContentBlock {
+  @include calc('width', '100% - #{var(--navW)}');
+  overflow: hidden;
+  height: 100%;
+  padding: $space - 10 $space - 5 $space - 5;
+  .contentBlock {
+    height: 100%;
+  }
+  @include maxScreen(ipadRMax) {
+    width: 100%;
+    padding: $space - 10;
+    overflow: unset;
+    height: auto;
+  }
+}
+
+.nav-l {
+  .alertBlock {
+    @include calc('left', '50% + (#{$navWL} / 2)');
+  }
+  .popupBlock {
+    padding-left: ($navWL + $space);
+  }
+
+  .fixBlock.l {
+    left: $navWL;
+  }
+}
+
+// m size
+.nav-m {
+  .navMHidden {
+    display: none !important;
+    @include maxScreen(ipadRMax) {
+      display: block !important;
+    }
+  }
+
+  .navBlock {
+    nav {
+      & > div {
+        padding: $space - 5;
+        text-align: center;
+
+        &.bottomBlock {
+          @include maxScreen(ipadRMax) {
+            padding-bottom: 0;
+          }
+        }
+      }
+    }
+    .topBlock {
+      & > * {
+        margin: 0 auto;
+        @include maxScreen(ipadRMax) {
+          margin: 0;
+          margin-right: $space - 5;
+        }
+      }
+    }
+    .userBlock {
+      .circleBlock {
+        margin-right: 0;
+        @include maxScreen(ipadRMax) {
+          margin-right: $space - 5;
+        }
+        & > div {
+          width: 35px;
+          height: 35px;
+          position: relative;
+        }
+      }
+    }
+  }
+
+  .navBlock {
+    .listBlock {
+      ol {
+        padding: 0;
+        li {
+          justify-content: center;
+          padding: $space - 5;
+          @include maxScreen(ipadRMax) {
+            justify-content: flex-start;
+            padding: 18px 15px;
+          }
+          p {
+            display: none;
+            @include maxScreen(ipadRMax) {
+              display: block;
+            }
+          }
+          b {
+            position: absolute;
+            top: 10px;
+            right: 5px;
+          }
+        }
+      }
+    }
+    .sysBlock {
+      display: none;
+      @include maxScreen(ipadRMax) {
+        display: block;
+      }
+    }
+    .configBlock {
+      ol {
+        @include flex(CW, center, center, center);
+        @include maxScreen(ipadRMax) {
+          @include flex(RNo, stretch, stretch, stretch);
+        }
+        li {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  header {
+    app-nav-btn {
+      display: none;
+    }
+  }
+
+  .alertBlock {
+    @include calc('left', '50% + (#{$navWM} / 2)');
+  }
+
+  .popupBlock {
+    padding-left: ($navWM + $space);
+  }
+
+  .fixBlock.l {
+    left: $navWM;
+  }
+}
+
+// 全部隱藏
+.nav-s {
+  .navBlock {
+    display: none !important;
+  }
+
+  header {
+    app-nav-btn {
+      display: block;
+    }
+
+    h1 {
+      @include calc('width', '100% - 26px');
+    }
+  }
+}
+
+.sysBlock {
+  .layoutDetail {
+    .info {
+      & > .LBlock {
+        margin-right: $space;
+      }
+    }
+  }
+
+  div.group {
+    & ~ .group {
+      margin-top: $space * 2;
+    }
+
+    .caption {
+      & + .block {
+        margin-top: $space - 10;
+      }
+    }
+  }
+}

@@ -1,0 +1,27 @@
+:root {
+  @include spread-map($theme-map-default);
+  #{--navW}: $navWL;
+
+  @include maxScreen(ipadRMax) {
+    #{--navW}: 0;
+  }
+}
+
+:root.nav-m {
+  #{--navW}: $navWM;
+
+  @include maxScreen(ipadRMax) {
+    #{--navW}: 100%;
+  }
+}
+:root.nav-s {
+  --navW: 0px;
+}
+
+:root.light {
+  @include spread-map($theme-map-lights);
+}
+
+:root.dark {
+  @include spread-map($theme-map-darken);
+}

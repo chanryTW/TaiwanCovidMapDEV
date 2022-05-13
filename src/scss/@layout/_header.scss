@@ -1,0 +1,84 @@
+header {
+  @include flex();
+  width: 100%;
+  padding-bottom: $space - 8;
+  border-bottom: 1px solid theme-var($--line);
+  min-height: 43px;
+  app-nav-btn {
+    display: none;
+    @include maxScreen(ipadRMax) {
+      display: block;
+
+      .navBtn {
+        width: 20px;
+        padding: 0;
+      }
+    }
+  }
+  .LBox {
+    @include flex(RNo, flex-start);
+
+    app-nav-btn {
+      width: 26px;
+      margin-right: $space;
+      flex: 0 0 auto;
+      @include maxScreen(ipadRMax) {
+        width: auto;
+        margin-right: 8px;
+      }
+    }
+  }
+  .RBox {
+    @include flex(RW, flex-end);
+    app-button {
+      margin: 2.5px 0;
+      @include maxScreen(ipadRMax) {
+        margin: 0;
+      }
+
+      & ~ * {
+        margin-left: $space - 10;
+        @include maxScreen(ipadRMax) {
+          margin: 0;
+        }
+      }
+    }
+    @include maxScreen(ipadRMax) {
+      .btn {
+        margin-left: 3px;
+        &:not(.errorData_s):not(.quit_s):not(.signHistory_s) {
+          display: none;
+        }
+      }
+    }
+  }
+  h1 {
+    color: theme-var($--title);
+    text-transform: uppercase;
+    width: 100%;
+    line-height: 1;
+    word-break: break-word;
+    font-size: 1.4em;
+    @include maxScreen(ipadRMax) {
+      font-size: 1.2em;
+    }
+    &.more {
+      color: theme-var($--subTitle);
+    }
+    span {
+      color: theme-var($--title);
+      user-select: none;
+      margin-right: $space - 8;
+      b {
+        color: theme-var($--title);
+        margin-left: $space - 8;
+      }
+      &:not(.notLink) {
+        cursor: pointer;
+        &:hover {
+          color: theme-var($--hover);
+        }
+      }
+    }
+  }
+}

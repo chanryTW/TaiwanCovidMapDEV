@@ -1,0 +1,341 @@
+////////////////////////////// 文字
+$fontFamily: Helvetica, '蘋方-繁', 'PingFang TC', '微軟正黑體', 'Microsoft JhengHei',
+  'Helvetica Neue', 'Helvetica', 'Arial', 'Utkal', sans-serif;
+
+$fontFamilyB: Helvetica, '標楷體', 'BiauKai', 'DFKai-sb', 'Helvetica Neue', 'Helvetica', 'Arial',
+  sans-serif;
+
+// 路徑
+$imgUrl: '/assets/image/';
+
+// 基本空間設置
+$space: 15px;
+
+// 文字大小區間
+$fzSpace: 0.2em;
+
+// 文字預設
+$fzDefault: 1em;
+
+// 圓角
+$borderR: 3px;
+$borderRMin2: 5px;
+$borderRMin: 10px;
+$borderRMax: 20px;
+$borderLogin: 100px;
+
+$shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+
+// input + maticon 的(L|R)位置
+$matIconSpace: 9px;
+
+$comPaddingM: $space - 10;
+// input, select, button padding
+$comPadding: $space - 7 $space - 5;
+$comPaddingL: $space - 5 $space;
+
+$navWL: 230px;
+$navWM: 60px;
+$statisticsBlockH: 245px;
+$LBlockW: 280px;
+
+// SVG ICON
+$check: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'/%3E%3C/svg%3E";
+$check_indeterminate: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cg%3E%3Crect fill='none' fill-rule='evenodd' height='24' width='24'/%3E%3Cg%3E%3Crect fill-rule='evenodd' height='2' width='16' x='4' y='11'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
+
+////////////////////////////// 文字粗細體
+$fwL: 100;
+$fw3: 300;
+$fwN: normal;
+$fwB: bold;
+
+////////////////////////////// z-index
+$z-idx--2: -2;
+$z-idx--1: -1;
+$z-idx-1: 999999; // alert
+$z-idx-2: 999998; // loading
+$z-idx-popupBG: 999997; // popupBG
+$z-idx-fixBlock: 999996; // 左右固定區塊
+
+////////////////////////////// 裝置
+$screenSizeSpace: 0.02;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$pcMax: $breakpoint-xl; // 1200
+$pcMin: $breakpoint-xl - $screenSizeSpace; // 1199.98
+$ipadRMax: $breakpoint-lg; // 992
+$ipadRMin: $breakpoint-lg - $screenSizeSpace; // 991.98
+$ipadCMax: $breakpoint-md; // 768
+$ipadCMin: $breakpoint-md - $screenSizeSpace; // 767.98
+$mobile: $breakpoint-sm; // 576
+
+////////////////////////////// 顏色
+// 固定
+$color0: transparent;
+$white: #fff;
+$black: #414141;
+$red: #c46868;
+$orange: #e29564;
+$yellow: #f0af2b;
+$green: #68ba8d;
+$blue: #6895c4;
+$purple: #8a7fc4;
+$gray: #939393;
+$greenBlue: #8cd6dc;
+$main: $orange;
+
+// 定義var(--NAME)名稱
+// 基本
+$--color0: --color0;
+$--black: --black;
+$--white: --white;
+$--red: --red;
+$--orange: --orange;
+$--yellow: --yellow;
+$--green: --green;
+$--blue: --blue;
+$--purple: --purple;
+$--gray: --gray;
+$--greenBlue: --greenBlue;
+$--main: --main;
+
+// 自定義
+// 登入頁面, 因為深色與淺色是一樣的
+$--loginBG: --loginBG;
+$--loginBGL: --loginBGL;
+$--loginMain: --loginMain;
+
+// error color
+$--errorRed: --errorRed;
+$--errorGreen: --errorGreen;
+$--errorBlue: --errorBlue;
+$--errorOrange: --errorOrange;
+$--errorYellow: --errorYellow;
+$--errorPurple: --errorPurple;
+$--errorGreenBlue: --errorGreenBlue;
+$--errorPink: --errorPink;
+$--errorDarkBlue: --errorDarkBlue;
+$--errorDarkGreen: --errorDarkGreen;
+$--errorlightYellow: --errorlightYellow;
+
+// 設定基本顏色
+$theme-map-default: (
+  $--color0: $color0,
+  $--white: $white,
+  $--black: $black,
+  $--red: $red,
+  $--orange: $orange,
+  $--yellow: $yellow,
+  $--green: $green,
+  $--blue: $blue,
+  $--purple: $purple,
+  $--gray: $gray,
+  $--main: $main,
+  $--greenBlue: $greenBlue,
+  $--loginBGL: #fcefe6,
+  $--loginMain: #d06e13,
+  $--errorRed: #e42727,
+  $--errorGreen: #35a847,
+  $--errorBlue: #2bb4fc,
+  $--errorOrange: #f07e1d,
+  $--errorYellow: #ffbf00,
+  $--errorPurple: #ae8bdd,
+  $--errorGreenBlue: #05d8cd,
+  // $--errorGreenBlue: #27c0b6,
+  $--errorPink: #ff0095,
+  $--errorDarkBlue: #0026ff,
+  $--errorDarkGreen: #33ff00,
+  $--errorlightYellow: #d9ff00,
+);
+
+// 內頁
+$--ipt: --ipt;
+$--iptIcon: --iptIcon;
+$--hover: --hover;
+$--iptFocus: --iptFocus;
+$--bG: --bG;
+$--font: --font;
+$--border: --border;
+$--line: --line;
+$--navBG: --navBG;
+$--navFontColor: --navFontColor;
+$--title: --title; // 標題
+$--subTitle: --subTitle; // 標題
+$--th: --th; // table th
+$--subTable: --subTable;
+$--LRBlock: --LRBlock;
+$--rangeBG: --rangeBG;
+$--caption: --caption;
+$--contentTitle: --contentTitle;
+$--tableUpt: --tableUpt;
+$--tableBtn: --tableBtn;
+$--filter: --filter;
+$--asideBlock: --asideBlock;
+$--over: --over;
+$--fixBG: --fixBG;
+$--tableHover: --tableHover;
+$--analysis: --analysis;
+$--editIptTable: --editIptTable;
+$--requiredIptTable: --requiredIptTable;
+$--thBG: --thBG;
+$--loadBG1: --loadBG1;
+$--loadBG2: --loadBG2;
+$--loadTxt: --loadTxt;
+
+// status color
+$--sRed: --sRed;
+$--sOrange: --sOrange;
+$--sYellow: --sYellow;
+$--sGreen: --sGreen;
+$--sBlue: --sBlue;
+
+// th bg color
+$--bg0: --bg0;
+$--bg1: --bg1;
+$--bg2: --bg2;
+$--bg3: --bg3;
+$--bg4: --bg4;
+$--bg5: --bg5;
+$--bg6: --bg6;
+$--bg7: --bg7;
+$--bg8: --bg8;
+$--bg9: --bg9;
+
+// Analysis
+$--analysis0: --analysis0;
+$--analysis1: --analysis1;
+$--analysis2: --analysis2;
+$--analysis3: --analysis3;
+
+// Other Colors
+// hover
+$orangeL: #fadac5;
+
+// input, select, textarea
+$iptL: #cbc4bf;
+$iptD: #817065;
+$subTitle: #ac9c92;
+
+// 暗黑會共用的顏色
+$dareknShared1: #414141;
+$dareknShared2: #717171;
+
+// 暗黑
+$theme-map-darken: (
+  $--loginBG: $black,
+  $--ipt: $iptD,
+  $--iptIcon: $iptD,
+  $--hover: $orangeL,
+  $--iptFocus: $main,
+  $--bG: $dareknShared1,
+  $--font: $white,
+  $--border: $dareknShared1,
+  $--line: #4e4e4e,
+  $--navBG: #222221,
+  $--navFontColor: $dareknShared2,
+  $--title: $iptD,
+  $--subTitle: $subTitle,
+  $--th: #836856,
+  $--subTable: #343434,
+  $--LRBlock: #2c2c2c,
+  $--rangeBG: #615b58,
+  $--caption: #93877d,
+  $--contentTitle: $dareknShared2,
+  $--tableUpt: #403e3d,
+  $--tableBtn: #d1bfb4,
+  $--filter: $iptD,
+  $--asideBlock: #3e3e3e,
+  $--over: #4a4847,
+  $--fixBG: $dareknShared1,
+  $--tableHover: #2f2f2f,
+  $--bg0: #2e3b31,
+  $--bg1: #382e3b,
+  $--bg2: #2e343b,
+  $--bg3: #3b2e2e,
+  $--bg4: #3b372e,
+  $--bg5: #2e3b3a,
+  $--bg6: #cfcdce,
+  $--bg7: #f1e3b3,
+  $--bg8: #f6e4d7,
+  $--bg9: #cbe0ba,
+  $--analysis: #2c2c2c,
+  $--sRed: #e5b0a7,
+  $--sOrange: #ffc293,
+  $--sYellow: #faf27a,
+  $--sGreen: #b2d692,
+  $--sBlue: #a7d4e5,
+  $--analysis0: #937e9a,
+  $--analysis1: #7586a3,
+  $--analysis2: #866767,
+  $--analysis3: #7e9a86,
+  $--editIptTable: rgba(140, 214, 220, 0.1),
+  $--requiredIptTable: rgba(247, 192, 202, 0.1),
+  $--thBG: #5f5d5c,
+  $--loadBG1: #3e3e3e,
+  $--loadBG2: #363636,
+  $--loadTxt: #6b6461,
+);
+
+// 明亮會共用的顏色
+// $lightsShared1: #f4f3f2;
+$lightsShared1: #f0f0f0;
+$lightsShared2: $iptD;
+
+// 明亮
+$theme-map-lights: (
+  $--loginBG: $white,
+  $--ipt: $iptL,
+  $--iptIcon: $iptL,
+  $--hover: $orangeL,
+  $--iptFocus: $main,
+  $--bG: $lightsShared1,
+  $--font: #1f2f39,
+  $--border: $lightsShared1,
+  $--line: #e6e6e6,
+  $--navBG: $white,
+  $--navFontColor: $lightsShared2,
+  $--title: $lightsShared2,
+  $--subTitle: $subTitle,
+  $--th: #b28060,
+  $--subTable: #f9f7f5,
+  $--LRBlock: $white,
+  $--rangeBG: #ded8d5,
+  $--caption: #93877d,
+  $--contentTitle: $iptL,
+  $--tableUpt: #fbf4f0,
+  $--tableBtn: #bd957d,
+  $--filter: $iptD,
+  $--asideBlock: #f7f5f4,
+  $--over: #dadada,
+  $--fixBG: $dareknShared1,
+  $--tableHover: #fafaf9,
+  $--bg0: #bdcfc1,
+  $--bg1: #c7b9cb,
+  $--bg2: #c6d3e2,
+  $--bg3: #d1bcbc,
+  $--bg4: #d7c9a9,
+  $--bg5: #a3c1be,
+  $--bg6: #cfcdce,
+  $--bg7: #f1e3b3,
+  $--bg8: #f6e4d7,
+  $--bg9: #cbe0ba,
+  $--analysis: $white,
+  $--sRed: #d58679,
+  $--sOrange: #e9a654,
+  $--sYellow: #dec401,
+  $--sGreen: #6dae60,
+  $--sBlue: #62addd,
+  $--analysis0: #bb90c9,
+  $--analysis1: #85a5db,
+  $--analysis2: #d78b8b,
+  $--analysis3: #91c9a2,
+  $--editIptTable: rgba(140, 214, 220, 0.1),
+  $--requiredIptTable: rgba(247, 192, 202, 0.1),
+  $--thBG: #ece4de,
+  $--loadTxt: #bfb6b1,
+  $--loadBG1: #f6f7f8,
+  $--loadBG2: #edeef1,
+);

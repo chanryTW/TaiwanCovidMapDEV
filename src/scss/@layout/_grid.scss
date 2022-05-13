@@ -1,0 +1,384 @@
+%flexNoWrapBetweenCenter {
+  @include flex();
+}
+
+%flexNoWrapStart {
+  @include flex(RNo, flex-start, flex-start, flex-start);
+}
+
+%flexNoWrapCenter {
+  @include flex(RNo, center);
+}
+
+%flexNoWrapStartCenter {
+  @include flex(RNo, flex-start);
+}
+
+%flexNoWrapStartStretch {
+  @include flex(RNo, flex-start, stretch, stretch);
+}
+
+%flexColumnNoWrapStartCenter {
+  @include flex(CNo, flex-start, unset, unset);
+}
+
+%flexNoWrapEnd {
+  @include flex(RNo, flex-end);
+}
+
+%flexNoWrapBetweenStart {
+  @include flex(RNo, space-between, flex-start, flex-start);
+}
+
+%flexWrapBetweenStart {
+  @include flex(RW, space-between, flex-start, flex-start);
+}
+
+.flexNoWrapBetweenStart {
+  @extend %flexNoWrapBetweenStart;
+}
+
+.flexNoWrapBetweenCenter {
+  @extend %flexNoWrapBetweenCenter;
+}
+
+.flexNoWrapStart {
+  @extend %flexNoWrapStart;
+}
+
+.flexNoWrapCenter {
+  @extend %flexNoWrapCenter;
+}
+
+.flexNoWrapStartCenter {
+  @extend %flexNoWrapStartCenter;
+}
+
+.flexNoWrapStartStretch {
+  @extend %flexNoWrapStartStretch;
+}
+
+.flexColumnNoWrapStartCenter {
+  @extend %flexColumnNoWrapStartCenter;
+}
+
+.flexNoWrapEnd {
+  @extend %flexNoWrapEnd;
+}
+
+.flexWrapBetweenStart {
+  @extend %flexWrapBetweenStart;
+}
+
+.gridBlock {
+  height: 100%;
+  max-height: 100%;
+  @include flex(CNo, flex-start);
+  overflow: hidden;
+
+  & > * {
+    width: 100%;
+  }
+
+  .fullH {
+    overflow: hidden;
+    height: 100%;
+    @include maxScreen(ipadRMax) {
+      overflow: unset;
+      height: auto;
+    }
+  }
+
+  .scrollBlock {
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+}
+
+.layoutDetail {
+  max-height: 100%;
+  height: 100%;
+  @extend %flexColumnNoWrapStartCenter;
+  position: relative;
+
+  &.listSpace {
+    padding: $space - 10;
+  }
+
+  &.noRsl {
+    .block.tables {
+      display: none;
+    }
+
+    app-button {
+      &:not(.historyList) {
+        display: none;
+      }
+    }
+  }
+
+  .info {
+    & > .LBlock {
+      width: 100%;
+      max-width: $LBlockW;
+      margin-right: $space - 10;
+      position: relative;
+      .scrollBlock {
+        padding: $space - 10;
+      }
+
+      & + .RBlock {
+        @include calc('max-width', '100% - #{$LBlockW} + 40px');
+        padding: $space - 10;
+        position: relative;
+
+        .tableBtnBlock {
+          padding-left: $space - 5;
+        }
+      }
+    }
+    & > .RBlock {
+      width: 100%;
+      max-width: 100%;
+      overflow: hidden;
+    }
+  }
+}
+
+.block {
+  background-color: theme-var($--LRBlock);
+  border-radius: $borderRMin;
+  box-shadow: $shadow;
+  padding: $space - 5;
+  width: 100%;
+  .caption {
+    margin-bottom: $space - 10;
+  }
+
+  & + .btnBlock {
+    margin-top: $space * 2;
+    text-align: center;
+  }
+
+  &.tables {
+    padding: 0;
+    max-height: 100%;
+    overflow: auto;
+  }
+
+  .group {
+    margin: $space - 5 auto $space;
+
+    & ~ .group {
+      margin-top: $space * 2;
+    }
+  }
+
+  & ~ .block {
+    margin-top: $space;
+  }
+
+  // 待
+  .loadBox {
+    text-align: center;
+    margin: $space - 8 auto $space;
+  }
+
+  &.list {
+    .loadBox {
+      padding: 0;
+    }
+    ol {
+      li {
+        h6 {
+          &:not(.caption) {
+            @extend %Labels;
+          }
+
+          & + div {
+            padding: $space - 10 0;
+            font-weight: $fwB;
+            word-break: break-word;
+          }
+        }
+
+        &:not(:last-child) {
+          padding-bottom: $space - 5;
+          border-bottom: 1px solid theme-var($--bG);
+        }
+
+        & ~ li {
+          margin-top: $space - 5;
+        }
+
+        @extend %formStyle;
+
+        &.view {
+          .caption {
+            display: none;
+          }
+
+          select,
+          input {
+            padding: 2px 0 0;
+
+            &[disabled] {
+              color: theme-var($--font);
+              opacity: 1;
+            }
+          }
+
+          .otherStatus {
+            .others {
+              left: 0;
+              padding: 0;
+              font-size: 15px;
+            }
+
+            input {
+              padding-left: 50px;
+            }
+          }
+
+          .selectBorder,
+          .inputBorder {
+            border: 0 none;
+          }
+
+          .selectBlock {
+            select {
+              & + b {
+                display: none;
+              }
+            }
+          }
+        }
+
+        &.subList {
+          padding-left: $space;
+        }
+      }
+    }
+    &.edit {
+      li {
+        &:not(:last-child) {
+          padding-bottom: $space;
+        }
+      }
+    }
+  }
+}
+
+.w100 {
+  & > * {
+    width: 100%;
+  }
+}
+
+.w50 {
+  & > * {
+    @include calc('width', '100% / 2 - 5px');
+    margin: 0;
+  }
+}
+
+.bgTable {
+  background-color: theme-var($--LRBlock);
+}
+
+.bg0 {
+  background-color: theme-var($--bg0);
+}
+
+.bg1 {
+  background-color: theme-var($--bg1);
+}
+
+.bg2 {
+  background-color: theme-var($--bg2);
+}
+
+.bg3 {
+  background-color: theme-var($--bg3);
+}
+
+.bg4 {
+  background-color: theme-var($--bg4);
+}
+
+.bg5 {
+  background-color: theme-var($--bg5);
+}
+
+.bg6 {
+  background-color: theme-var($--bg6);
+}
+.bg7 {
+  background-color: theme-var($--bg7);
+}
+.bg8 {
+  background-color: theme-var($--bg8);
+}
+.bg9 {
+  background-color: theme-var($--bg9);
+}
+
+// 待
+.oemLevelBg0 {
+  background-color: #fdf2cc;
+}
+.oemLevelBg1 {
+  background-color: #ddeaf7;
+}
+.oemLevelBg2 {
+  background-color: #e1f0da;
+}
+.oemLevelBg3 {
+  background-color: #fce3d6;
+}
+.oemLevelBg4 {
+  background-color: #dcd6d2;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.notAOR {
+  background-color: var(--errorYellow);
+  padding: 2px 3px;
+}
+
+.checknotAOR {
+  border: 4px solid var(--errorRed);
+
+  &.notAOR {
+    background-color: var(--white);
+  }
+}
+
+// Key底色
+.KeyBgc {
+  padding: 2px 3px;
+  
+  &.green {
+    background-color: var(--errorGreen);
+  }
+
+  &.yellow {
+    background-color: var(--errorYellow);
+  }
+
+  &.orange {
+    background-color: var(--errorOrange);
+  }
+
+  &.purple {
+    background-color: var(--errorPurple);
+  }
+
+  &.blue {
+    background-color: var(--bg2);
+  }
+}

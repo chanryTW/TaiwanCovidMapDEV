@@ -1,0 +1,572 @@
+input,
+textarea {
+  border: 0 none;
+  appearance: none;
+  display: block;
+  background-color: var(--color0);
+
+  color: theme-var($--font);
+  letter-spacing: 0.02em;
+
+  &:not(&[readOnly]):not(&[disabled]) {
+    font-weight: $fwB;
+  }
+
+  &:focus {
+    border-color: theme-var($--iptFocus);
+  }
+
+  &::placeholder {
+    color: theme-var($--ipt);
+    font-weight: $fwN;
+  }
+  &::-webkit-input-placeholder {
+    color: theme-var($--ipt);
+    font-weight: $fwN;
+  }
+  &:-ms-input-placeholder {
+    color: theme-var($--ipt);
+    font-weight: $fwN;
+  }
+  &::-moz-placeholder {
+    color: theme-var($--ipt);
+    font-weight: $fwN;
+    opacity: 1;
+  }
+}
+
+textarea {
+  resize: vertical;
+}
+.input {
+  &Block {
+    display: block;
+    margin: 0 auto;
+
+    &.required {
+      label {
+        &:after {
+          content: '*';
+          display: inline-block;
+        }
+      }
+    }
+
+    &.errorMsg {
+      .inputBorder {
+        border-color: var($--red);
+      }
+
+      label {
+        color: var($--red);
+      }
+
+      textarea,
+      input {
+        & + b {
+          visibility: visible;
+        }
+      }
+    }
+
+    label {
+      @extend %Labels;
+    }
+
+    textarea,
+    input {
+      width: 100%;
+      padding: $comPadding;
+      // 最大尺寸
+      &.l {
+        padding: $comPaddingL;
+      }
+      & + b {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: $space - 5;
+        width: 10px;
+        height: 10px;
+        pointer-events: none;
+        border-radius: 100%;
+        background-color: var(--red);
+        visibility: hidden;
+      }
+    }
+    &.focus:not(.notFocus) {
+      label,
+      .matIcon {
+        color: theme-var($--iptFocus);
+      }
+      .inputBorder {
+        border-color: theme-var($--iptFocus);
+      }
+      .otherStatus {
+        .others {
+          color: theme-var($--iptFocus);
+        }
+      }
+    }
+
+    // 系統價格變更
+    &.change {
+      .inputBorder {
+        border-color: var(--yellow);
+      }
+    }
+
+    // 經銷商變更
+    &.distyChange {
+      .inputBorder {
+        border-color: var(--purple);
+      }
+    }
+
+    &.search {
+      .inputBorder {
+        input {
+          padding-right: 33px;
+        }
+      }
+
+      .closeBtn {
+        right: 0;
+      }
+    }
+  }
+
+  &Border {
+    border-radius: $borderR;
+    position: relative;
+    width: 100%;
+    &:not(.noBorder) {
+      border: 1px solid theme-var($--ipt);
+    }
+
+    .matIcon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: theme-var($--iptIcon);
+    }
+
+    &:not(.matIocnR) {
+      .matIcon {
+        left: $matIconSpace;
+        & + input {
+          padding-left: 40px;
+        }
+      }
+    }
+
+    &.matIocnR {
+      .matIcon {
+        right: $matIconSpace;
+        & + input {
+          padding-right: 40px;
+        }
+      }
+    }
+  }
+}
+
+.checkboxBlock {
+  display: block;
+  width: 100%;
+
+  input[type='checkbox'] {
+    display: none !important;
+
+    & + label {
+      cursor: pointer;
+      width: 100%;
+      @extend %flexNoWrapStartCenter;
+      text-transform: capitalize;
+
+      span {
+        color: theme-var($--ipt);
+      }
+
+      &:hover {
+        span {
+          color: theme-var($--hover);
+        }
+      }
+
+      &::before {
+        content: '';
+        width: 16px;
+        height: 16px;
+        border: 1px solid theme-var($--ipt);
+        border-radius: $borderR;
+        margin-right: $space - 10;
+        flex: 0 0 auto;
+      }
+    }
+
+    &:checked {
+      & + label {
+        span {
+          color: var(--main);
+        }
+        &::before {
+          content: url($check);
+          background-color: var(--main);
+          border-color: var(--main);
+        }
+      }
+    }
+    &:indeterminate {
+      & + label {
+        span {
+          color: var(--main);
+        }
+        &::before {
+          content: url($check_indeterminate);
+          background-color: theme-var($--hover);
+          border-color: theme-var($--hover);
+        }
+      }
+    }
+  }
+
+  &.delTagBox {
+    input[type='checkbox'] {
+      & + label {
+        color: theme-var($--font);
+        padding: 2px $space - 5;
+        background-color: var(--loginBGL);
+        border-radius: 20px;
+        border: 1px solid theme-var($--line);
+
+        &::before {
+          display: none;
+        }
+
+        &:hover {
+          color: var(--main);
+        }
+      }
+    }
+
+    .matIcon {
+      margin-left: $space - 10;
+      color: theme-var($--subTitle);
+    }
+  }
+}
+
+.radioBlock {
+  display: block;
+  width: 100%;
+
+  input[type='radio'] {
+    display: none !important;
+
+    & + label {
+      cursor: pointer;
+      width: 100%;
+      position: relative;
+      padding: 2px 2px 2px 20px;
+      width: 100%;
+      display: block;
+
+      &::before,
+      &::after {
+        content: '';
+        width: 14px;
+        height: 14px;
+        border-radius: 100%;
+        border: 1px solid theme-var($--ipt);
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+      }
+    }
+
+    &:checked {
+      & + label {
+        color: var(--main);
+
+        &::before,
+        &::after {
+          border-color: var(--main);
+        }
+        &::after {
+          width: 8px;
+          height: 8px;
+          left: 3px;
+          background-color: var(--main);
+        }
+      }
+    }
+  }
+}
+
+// input range
+.rangeBlock {
+  position: relative;
+  div {
+    position: relative;
+    height: 42px;
+    .valBox {
+      display: block;
+      z-index: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%);
+      margin-top: -20px;
+
+      &:after {
+        content: '';
+        display: block;
+        background: var(--main);
+        width: 26px;
+        height: 26px;
+        border-radius: 50% 50% 0;
+        transform: translate(-50%, 0%) rotate(45deg);
+        position: absolute;
+        bottom: 14px;
+        left: 50%;
+        z-index: 0;
+      }
+      span {
+        display: block;
+        z-index: 1;
+        @include CenterBlock;
+        top: 38%;
+        font-size: 12px;
+        color: var(--white);
+      }
+    }
+  }
+}
+
+input[type='range'] {
+  margin: auto;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  height: 4px;
+  background-color: theme-var($--rangeBG);
+  background-image: -webkit-gradient(
+    linear,
+    50% 0%,
+    50% 100%,
+    color-stop(0%, var(--main)),
+    color-stop(100%, var(--main))
+  );
+  background-image: linear-gradient(var(--main), var(--main));
+  background-size: 50% 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:hover,
+  &:active {
+    &::-webkit-slider-thumb {
+      width: 18px;
+      height: 18px;
+    }
+    &::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+    }
+    &::-ms-thumb {
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  &::-webkit-slider-runnable-track {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  &::-moz-range-track {
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  &::-moz-focus-outer {
+    border: 0;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: var(--main);
+    border: 1px solid var(--main);
+    border-radius: 1rem;
+    cursor: pointer;
+    cursor: grab;
+  }
+
+  &::-moz-range-thumb {
+    cursor: grab;
+    appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: var(--main);
+    border: 1px solid var(--main);
+    border-radius: 1rem;
+    cursor: pointer;
+  }
+}
+
+.dropBlock {
+  position: relative;
+
+  &.fixed {
+    .dropListBlock {
+      position: static;
+      background-color: var(--color0);
+      box-shadow: none;
+    }
+  }
+
+  .inputBorder {
+    &.showCloseBtn {
+      input {
+        @include calc('width', '100% - 30px');
+        font-weight: $fwB;
+      }
+
+      .btn {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+      }
+
+      .matIcon {
+        position: static;
+        transform: none;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .dropListBlock {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    background-color: theme-var($--asideBlock);
+    width: 100%;
+    box-shadow: $shadow;
+    max-height: 350px;
+    overflow-y: auto;
+
+    &.defaultOpen {
+      position: relative;
+    }
+
+    .dropListBlockItem {
+      &.active {
+        .dropListItems {
+          background-color: var($--main);
+        }
+      }
+    }
+
+    .dropListItems {
+      cursor: pointer;
+      padding: $space - 5 $space;
+
+      &:hover {
+        background-color: var($--main);
+      }
+    }
+  }
+  .others {
+    display: none;
+  }
+
+  .otherStatus {
+    .others {
+      display: block;
+      padding: 1px 3px;
+      position: absolute;
+      top: 50%;
+      left: 5px;
+      transform: translateY(-50%);
+      color: theme-var($--ipt);
+      width: 40px;
+      text-align: center;
+      line-height: 1;
+    }
+    input {
+      padding-left: 60px;
+    }
+  }
+}
+
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.switchBlock {
+  display: inline-block;
+  margin-left: 0;
+  text-align: left;
+  vertical-align: top;
+
+  input {
+    & + label {
+      width: 52px;
+      display: block;
+      position: relative;
+
+      &::after {
+        content: '';
+        display: block;
+        border-radius: 100%;
+        border: 2px solid $white;
+        background-color: $white;
+        width: 12px;
+        height: 12px;
+        position: absolute;
+        top: 50%;
+        left: 20%;
+        transform: translate(-50%, -50%);
+        transition: all 0.3s ease-in-out;
+      }
+
+      &::before {
+        content: '';
+        border: 1px solid theme-var($--rangeBG);
+        background-color: theme-var($--rangeBG);
+        width: 50px !important;
+        height: 20px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        margin: 0;
+        border-radius: 20px;
+        padding: 0;
+      }
+    }
+
+    &:checked + label {
+      &::before {
+        background-color: var(--green);
+        border-color: var(--green);
+      }
+
+      &::after {
+        background-color: var(--white);
+        left: 78%;
+        margin: 0;
+      }
+    }
+  }
+}

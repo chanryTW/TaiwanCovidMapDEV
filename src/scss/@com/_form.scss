@@ -1,0 +1,66 @@
+.formBlock {
+  width: 100%;
+  display: block;
+  fieldset {
+    width: 100%;
+    margin: $space - 5 auto $space;
+
+    &.btnBlock {
+      margin-top: $space * 2;
+    }
+
+    @extend %formStyle;
+  }
+}
+
+.fieldsetBlock {
+  width: 100%;
+  margin: $space - 5 auto $space;
+}
+
+%formStyle {
+  &.required {
+    label {
+      &:not(.switchs) {
+        &:after {
+          content: '*';
+          display: inline-block;
+        }
+      }
+    }
+  }
+  &.errorMsg {
+    .changePsdBtn {
+      display: none;
+    }
+    .inputBlock {
+      input {
+        & + b {
+          visibility: visible;
+        }
+      }
+    }
+    .inputBorder {
+      border-color: var(--red);
+
+      .matIcon {
+        color: var(--red);
+      }
+    }
+    .selectBlock {
+      label {
+        color: var($--red);
+      }
+      b {
+        border-top-color: var($--red);
+      }
+
+      .selectBorder {
+        border-color: var($--red);
+      }
+    }
+    label {
+      color: var(--red);
+    }
+  }
+}

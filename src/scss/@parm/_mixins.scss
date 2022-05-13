@@ -1,0 +1,241 @@
+// 產生root的變數
+@mixin spread-map($map: ()) {
+  @each $key, $value in $map {
+    #{$key}: $value;
+    #{$key}-rgb: #{hexToRGB($value)};
+  }
+}
+
+// 輸出顏色
+@mixin colorSet {
+  @each $key, $value in map-merge($theme-map-default, $theme-map-darken) {
+    .color#{unquote("\\" + $key)} {
+      color: var($key);
+    }
+  }
+}
+
+// 輸出按鈕背景full
+@mixin btnborderfullColorSet {
+  @each $key, $value in map-merge($theme-map-default, $theme-map-darken) {
+    &.b#{unquote("\\" + $key)} {
+      border-color: var($key);
+      background-color: var($key);
+      div {
+        color: var($--white);
+      }
+    }
+  }
+}
+
+// 輸出按鈕邊匡顏色
+@mixin btnborderColorSet {
+  @each $key, $value in map-merge($theme-map-default, $theme-map-darken) {
+    &.b#{unquote("\\" + $key)} {
+      border-color: var($key);
+      div {
+        color: var($key);
+      }
+    }
+  }
+}
+
+// bc hover
+@mixin bcHover {
+  @each $key, $value in map-merge($theme-map-default, $theme-map-darken) {
+    &:not(&[disabled]){
+      &:hover {
+        &.b#{unquote("\\" + $key)} {
+          border-color: var($key);
+          background-color: var($key);
+          div {
+            color: var($--white);
+          }
+        }
+      }
+    }
+  }
+}
+
+// bcf hover
+@mixin bcfHover {
+  @each $key, $value in map-merge($theme-map-default, $theme-map-darken) {
+    &:not(&[disabled]){
+      &:hover {
+        &.b#{unquote("\\" + $key)} {
+          border-color: var($key);
+          div {
+            color: var($key);
+          }
+        }
+      }
+    }
+  }
+}
+
+// 計算寬度
+@mixin calc($property, $expression) {
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+// flex 簡寫
+@mixin flex(
+  $flow: 'RNo',
+  $just: space-between,
+  $items: center,
+  $content: center
+) {
+  @if $flow == 'RW' {
+    flex-flow: row wrap;
+  } @else if $flow == 'CNo' {
+    flex-flow: column nowrap;
+  } @else if $flow == 'CW' {
+    flex-flow: column wrap;
+  } @else {
+    flex-flow: row nowrap;
+  }
+
+  display: flex;
+  justify-content: $just;
+  align-items: $items;
+  align-content: $content;
+}
+
+// ios 手機使用
+@mixin deviceSpace {
+  padding-top: constant(safe-area-inset-top, 38px);
+  padding-top: env(safe-area-inset-top, 38px);
+  padding-right: constant(safe-area-inset-right);
+  padding-right: env(safe-area-inset-right);
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+  padding-left: constant(safe-area-inset-left);
+  padding-left: env(safe-area-inset-left);
+}
+
+// 置中
+@mixin CenterBlock($side: left) {
+  position: absolute;
+  top: 50%;
+  #{$side}: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// nav 警告提示動畫
+@keyframes warn {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+
+  30% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+// device設置
+@mixin maxScreen($size) {
+  @if $size == 'pcMax' {
+    @media screen and (max-width: $pcMax) {
+      @content;
+    }
+  } @else if $size == 'pcMin' {
+    @media screen and (max-width: $pcMin) {
+      @content;
+    }
+  } @else if $size == 'ipadRMax' {
+    @media screen and (max-width: $ipadRMax) {
+      @content;
+    }
+  } @else if $size == 'ipadRMin' {
+    @media screen and (max-width: $ipadRMin) {
+      @content;
+    }
+  } @else if $size == 'ipadCMax' {
+    @media screen and (max-width: $ipadCMax) {
+      @content;
+    }
+  } @else if $size == 'ipadCMin' {
+    @media screen and (max-width: $ipadCMin) {
+      @content;
+    }
+  } @else if $size == 'mobile' {
+    @media screen and (max-width: $mobile) {
+      @content;
+    }
+  } @else {
+    @media screen and (max-width: $size) {
+      @content;
+    }
+  }
+}
+
+@keyframes matIconAnimate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@mixin fullPageLoading($name, $a, $b, $c, $d) {
+  @keyframes fullPageAnimation_#{$name} {
+    #{$a} {
+      opacity: 1;
+    }
+    #{$b} {
+      opacity: 1;
+      animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+    #{$c} {
+      opacity: 0.5;
+      animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    @if $d == 'none' {
+
+    } @else {
+      #{$d} {
+        opacity: 1;
+      }
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+  animation: fullPageAnimation_#{$name} 1800ms linear infinite normal forwards;
+}
+
+
+// 載入時動畫背景（變換深淺）
+@mixin loadBg() {
+  height: 100%;
+  background-size: 200% 100%;
+  animation: loadBgAnimation 1800ms linear infinite;
+}
+
+// 載入時動畫背景（dashboard用 不變換深淺）
+@mixin loadBgDashboard() {
+  height: 100%;
+  background-image: linear-gradient(70deg, theme-var($--loadBG1) 0%, theme-var($--loadBG2) 10%, theme-var($--loadBG1) 20%, theme-var($--loadBG1) 100%);
+  background-size: 200% 100%;
+  animation: loadBgAnimation 1800ms linear infinite;
+}
+
+@keyframes loadBgAnimation {
+  0% {
+    background-position: 50% 0;
+  }
+  100% {
+    background-position: -150% 0;
+  }
+}

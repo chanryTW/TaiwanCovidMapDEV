@@ -1,0 +1,45 @@
+h1 {
+  font-size: $fzDefault + $fzSpace * 5;
+}
+h2 {
+  font-size: $fzDefault + $fzSpace * 4;
+}
+h3 {
+  font-size: $fzDefault + $fzSpace * 3;
+}
+h4 {
+  font-size: $fzDefault + $fzSpace * 2;
+}
+h5 {
+  font-size: $fzDefault + $fzSpace;
+}
+h6 {
+  font-size: $fzDefault + $fzSpace - 0.1em;
+}
+p {
+  font-size: $fzDefault;
+}
+span {
+  font-size: $fzDefault - $fzSpace;
+}
+
+.fwB {
+  font-weight: $fwB;
+}
+
+// 輸出所有顏色
+@include colorSet;
+
+.caption {
+  color: theme-var($--caption);
+  text-transform: capitalize;
+}
+
+.contentTitle {
+  margin-bottom: $space;
+}
+
+.noRslBox {
+  color: theme-var($--caption);
+  font-size: 1em;
+}

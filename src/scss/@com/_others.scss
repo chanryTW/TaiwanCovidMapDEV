@@ -1,0 +1,2060 @@
+.notFoundBlock {
+  @extend %flexNoWrapCenter;
+  height: 100%;
+  svg {
+    width: 100%;
+    display: block;
+    max-width: 40%;
+    margin: 0 auto $space + 5;
+  }
+}
+
+.line {
+  position: relative;
+  display: block;
+  width: 1px;
+  &::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: theme-var($--border);
+  }
+}
+
+.themeBlock {
+  cursor: pointer;
+  .themeBtn {
+    @extend %customBtn;
+  }
+}
+
+.fontSizeBlock {
+  cursor: pointer;
+  .fontSizeBtn {
+    @extend %customBtn;
+  }
+  .toggleBlock {
+    width: 100%;
+    display: block;
+    position: absolute;
+    bottom: 100%;
+    left: 0%;
+    right: 0;
+    padding: $space $space $space * 2;
+    text-align: center;
+    background-color: rgba(var(--navFontColor-rgb), 0.2);
+  }
+}
+
+app-logo,
+.logoBlock {
+  svg {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+  }
+  &.s {
+    svg {
+      max-width: 100px;
+    }
+  }
+  &.l {
+    svg {
+      max-width: 150px;
+    }
+  }
+
+  &.main {
+    svg {
+      * {
+        fill: var(--main);
+      }
+    }
+  }
+}
+
+.userBlock {
+  @extend %flexNoWrapStartCenter;
+  position: relative;
+
+  span {
+    display: block;
+  }
+
+  .circleBlock {
+    margin-right: $space - 5;
+    position: relative;
+    cursor: pointer;
+    &.alert {
+      &:after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        border: 3px solid theme-var($--navBG);
+        background-color: var(--red);
+        display: block;
+        border-radius: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
+    & > div {
+      background-color: var($--loginBGL);
+      width: 40px;
+      height: 40px;
+      border-radius: 100%;
+      span {
+        color: $orangeL;
+        font-weight: $fwB;
+        display: block;
+        font-size: 26px;
+        line-height: 1;
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    }
+  }
+
+  .nameBox {
+    width: 100%;
+    & > * {
+      word-break: break-all;
+      @include maxScreen(ipadRMax) {
+        text-align-last: left;
+      }
+    }
+  }
+
+  .company {
+    color: var(--main);
+    font-size: 0.9em;
+    margin-bottom: 4px;
+    text-transform: capitalize;
+  }
+
+  h5 {
+    font-size: 1em;
+    font-weight: $fwB;
+  }
+}
+
+.processBlock {
+  display: block;
+  width: 100%;
+  max-width: 100px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: theme-var($--rangeBG);
+  position: relative;
+
+  &::after {
+    content: attr(data-process);
+    font-size: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
+
+  & > div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 20px;
+    border-radius: 10px;
+    z-index: 0;
+    background-color: var(--main);
+  }
+}
+
+// add page
+.lineBlock {
+  position: relative;
+  min-width: 50px;
+  min-height: 50px;
+  flex: 0 0 auto;
+
+  span {
+    display: block;
+    color: theme-var($--rangeBG);
+    background-color: theme-var($--bG);
+    padding: $space - 2;
+    border-radius: 100%;
+    font-size: 14px;
+    line-height: 1;
+    z-index: 0;
+    @include CenterBlock;
+  }
+  &:after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 100%;
+    background-color: theme-var($--line);
+    @include CenterBlock;
+    z-index: -1;
+  }
+}
+
+// 經銷商報價
+.statisticsBlock {
+  max-height: $statisticsBlockH;
+  @extend %flexNoWrapStartStretch;
+  padding: 0 0 $space - 10 0;
+  margin-bottom: $space - 10;
+
+  .block {
+    box-shadow: none;
+  }
+
+  // 內部使用 沒有amtBlock
+  &.layout1 {
+    padding: 5px;
+
+    .tabBlock {
+      @include calc('max-width', '100% - #{$statisticsBlockH}');
+      padding: 0px;
+    }
+  }
+
+  // OEM
+  &.layout2 {
+    // max-height: 255px;
+    max-height: 465px;
+    height: 292px;
+    position: relative;
+    min-height: 44px;
+
+    .customBtn {
+      position: absolute;
+      @include CenterBlock('left');
+      left: 7%;
+      .mat-icon.matIcon {
+        width: 16px;
+        height: 16px;
+      }
+    }
+
+    .grabber {
+      position: absolute;
+      width: 35px;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -14px;
+      z-index: 5;
+      cursor: row-resize;
+      height: 14px;
+
+      span {
+        display: block;
+        width: 35px;
+        height: 2px;
+        background-color: rgba(var(--navFontColor-rgb), 0.2);
+        margin: 2px auto;
+      }
+    }
+
+    .table {
+      th,
+      td {
+        padding: $space - 10;
+        border-right: 1px solid var(--bG);
+      }
+
+      h6 {
+        font-size: 1.7em;
+        font-weight: $fwB;
+        line-height: 1;
+        text-align: center;
+        span {
+          font-size: 0.5em;
+          line-height: 1;
+          display: inline-block;
+          text-align: justify;
+          margin-left: $space - 10;
+        }
+      }
+
+      td {
+        &.fixL {
+          left: 170px;
+        }
+      }
+
+      tbody {
+        tr {
+          th {
+            cursor: pointer;
+            left: 0;
+          }
+
+          th,
+          td {
+            color: var(--black);
+
+            &.bg0 {
+              background-color: #ffe58b;
+            }
+            &.bg1 {
+              background-color: #ddeaf7;
+            }
+            &.bg2 {
+              background-color: #bdd7ee;
+            }
+            &.bg3 {
+              background-color: #e1efd9;
+            }
+            &.bg4 {
+              background-color: #c6dfb4;
+            }
+            &.bg5 {
+              background-color: #afc79e;
+            }
+
+            &.error {
+              color: #f44336;
+              .textbox {
+                color: #f44336;
+              }
+            }
+          }
+
+          &:hover {
+            td {
+              &.bg0 {
+                background-color: #ecd47e;
+              }
+              &.bg1 {
+                background-color: #cfdfef;
+              }
+              &.bg2 {
+                background-color: #b0c9de;
+              }
+              &.bg3 {
+                background-color: #d9e6d1;
+              }
+              &.bg4 {
+                background-color: #bfd4b1;
+              }
+              &.bg5 {
+                background-color: #9fb98c;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // form 報價明細使用，因為需要定義最高高度
+  & + .info {
+    @include calc('max-height', '100% - #{$statisticsBlockH}');
+  }
+
+  .nowBlock {
+    background-color: theme-var($--analysis);
+    border-radius: $borderRMin;
+    padding: $space - 10 $space - 5;
+    box-shadow: $shadow;
+    width: 100%;
+    max-width: $statisticsBlockH;
+    margin-right: $space;
+
+    .statisticsBox {
+      & > ol {
+        @include flex(RW, space-between, flex-start, flex-start);
+        & > li {
+          &:nth-child(1) {
+            width: 49.5%;
+          }
+
+          &:nth-child(2) {
+            width: 49.5%;
+            margin-left: 1%;
+          }
+          &:nth-child(3),
+          &:nth-child(4) {
+            padding-right: $space - 5;
+          }
+        }
+      }
+    }
+  }
+
+  .statisticsBox {
+    &.main {
+      h5 {
+        color: theme-var($--analysis0);
+      }
+    }
+    h6 {
+      font-size: 0.8em;
+      color: theme-var($--subTitle);
+    }
+
+    & > ol {
+      & > li {
+        width: 100%;
+        margin: $space - 8 0 0;
+        span {
+          font-weight: $fwL;
+          display: block;
+        }
+        h5 {
+          font-weight: $fwB;
+        }
+
+        &:nth-child(1) {
+          h5 {
+            color: var(--main) !important;
+          }
+        }
+      }
+    }
+  }
+}
+// OEM分析元件
+.statistics {
+  // 篩選功能列
+  .tableBtnBlock {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+
+    form > * {
+      margin-right: 5px;
+
+      select {
+        padding: 5px 30px 5px 10px;
+      }
+    }
+  }
+  // 頁籤內容
+  .tabBlock {
+    max-width: 100%;
+    padding: 3px 5px;
+
+    .tabBtnBlock {
+      top: auto;
+      left: 5px;
+
+      ol li {
+        line-height: 1.5em;
+        max-height: 37px;
+        min-height: 37px;
+      }
+    }
+
+    .tabContent {
+      padding: 0 0 15px 0;
+      margin-top: 37px;
+    }
+  }
+  
+}
+
+.flexNoWrapStartStretch.info {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.amtBlock {
+  padding: 0 $space + 5;
+  border-left: 1px solid theme-var($--line);
+  @include flex(CW, center);
+  width: 100%;
+  max-width: 200px;
+
+  & > div {
+    width: 100%;
+    height: 50%;
+    @include flex(CW, center);
+    & > div {
+      width: 100%;
+    }
+    span {
+      display: block;
+      text-align-last: left;
+    }
+    h6 {
+      color: var(--yellow);
+      font-size: 2em;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    &:first-child {
+      border-bottom: 1px solid theme-var($--line);
+    }
+  }
+}
+
+.tabBlock {
+  flex: 1 0 auto;
+  position: relative;
+  width: 100%;
+  @include calc('max-width', '100% - 420px');
+
+  .tabBtnBlock {
+    height: auto;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    z-index: 1;
+
+    &::-webkit-scrollbar {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    @media screen and (min-width: ($ipadCMax + 1)) {
+      &:hover {
+        &::-webkit-scrollbar-thumb {
+          background-color: var(--main);
+        }
+      }
+    }
+
+    ol {
+      @include flex(RNo, flex-start);
+
+      li {
+        padding: $space - 8 $space;
+        border-radius: $borderRMin $borderRMin 0 0;
+        background-color: theme-var($--asideBlock);
+        box-shadow: $shadow;
+        cursor: pointer;
+        text-align: center;
+        max-height: 32px;
+        min-height: 32px;
+        white-space: nowrap;
+
+        &.active {
+          background-color: theme-var($--analysis);
+        }
+      }
+    }
+  }
+  .tabContent {
+    background-color: theme-var($--analysis);
+    border-radius: 0 0 $borderRMin $borderRMin;
+    padding: $space;
+    box-shadow: $shadow;
+    @include calc('height', '100% - 32px');
+    margin-top: 32px;
+
+    &.listBlock {
+      padding: 0;
+
+      .block.tables {
+        min-width: auto;
+        background-color: var(--color0);
+        box-shadow: none;
+        border-radius: 0;
+
+        .table {
+          table-layout: fixed;
+          border-bottom: 0 none;
+          th,
+          td {
+            padding: $space - 10;
+            border: 0;
+            text-align: center;
+          }
+
+          thead {
+            th {
+              font-weight: $fwL;
+              color: theme-var($--font);
+              font-size: 0.8em;
+              text-align: center;
+              box-shadow: none;
+            }
+          }
+
+          tbody {
+            th {
+              font-size: 0.8em;
+              color: theme-var($--subTitle);
+              word-break: break-word;
+              white-space: normal;
+              text-align: right;
+              box-shadow: none;
+            }
+
+            tr {
+              &:nth-child(1) {
+                td {
+                  color: theme-var($--analysis1);
+                }
+              }
+              &:nth-child(2) {
+                td {
+                  color: theme-var($--analysis2);
+                }
+              }
+              &:nth-child(3) {
+                td {
+                  color: theme-var($--analysis3);
+                }
+              }
+
+              td {
+                font-weight: $fwB;
+                &:nth-child(2) {
+                  color: var(--main);
+                  font-size: 1.2em;
+                  font-weight: $fwB;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 用於彈跳視窗的背景
+.fixBg {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: $z-idx-popupBG;
+  background-color: rgba(var(--fixBG-rgb), 0.3);
+}
+
+// 左右固定block(簽核)
+.fixBlock {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-width: 35%;
+  min-width: 500px;
+  background-color: theme-var($--asideBlock);
+  z-index: $z-idx-fixBlock;
+  padding: $space;
+  padding-right: 0;
+  @include flex('CNo', flex-start);
+  height: 94%; // 待
+  @include maxScreen(ipadRMax) {
+    height: 100%;
+    top: 0;
+    max-width: 100% !important;
+    min-width: auto !important;
+    border-radius: 0 !important;
+    padding: $space - 5;
+  }
+
+  &.s {
+    max-width: $LBlockW + $space * 2;
+    min-width: $LBlockW + $space * 2;
+  }
+
+  &.m {
+    max-width: $LBlockW + $space * 5 + 5;
+    min-width: $LBlockW + $space * 5 + 5;
+  }
+
+  &.xl {
+    max-width: 600px;
+    min-width: 600px;
+  }
+
+  & > article {
+    width: 100%;
+  }
+
+  &.r {
+    box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.16);
+    border-radius: $borderRMin 0 0 $borderRMin;
+    right: 0;
+  }
+
+  &.l {
+    box-shadow: 2px 1px 4px rgba(0, 0, 0, 0.16);
+    border-radius: 0 $borderRMin $borderRMin 0;
+    left: 0;
+  }
+
+  h5,
+  .scrollBlock.y,
+  .btnBlock {
+    padding: $space - 5 $space 0 0;
+    @include maxScreen(ipadRMax) {
+      padding-right: 0;
+    }
+  }
+
+  h5 {
+    width: 100%;
+    word-break: break-word;
+    font-weight: $fwB;
+    padding-top: 0;
+    padding-bottom: $space;
+  }
+
+  .table {
+    tbody {
+      & > tr {
+        &:not(:last-child) {
+          td,
+          th {
+            &:not(.noBorder) {
+              border-bottom: 1px solid theme-var($--line);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  tfoot {
+    tr {
+      border-top: 7px solid theme-var($--bG);
+    }
+  }
+}
+
+// 簽核歷程
+.signOffProcessBlock {
+  .formBlock {
+    margin-bottom: $space * 2;
+    & > ol {
+      position: relative;
+      &::after {
+        content: '';
+        width: 2px;
+        z-index: -1;
+        bottom: 0;
+        position: absolute;
+        top: 0;
+        left: 10px;
+        background-color: theme-var($--line);
+        z-index: -1;
+      }
+      & > li {
+        padding: $space - 5 0;
+
+        & > div {
+          @include flex(RW, flex-start, flex-start, flex-start);
+          max-width: 100%;
+        }
+        &.addSignOff {
+          padding-top: $space * 2;
+        }
+        &.addSignOffBtn {
+          padding-bottom: 40px;
+
+          .btn.full.b--green {
+            border-color: var(--purple);
+            background-color: var(--purple);
+            border-radius: 100%;
+            width: 36px;
+            height: 36px;
+            width: 22px;
+            height: 22px;
+            padding: 0;
+            .mat-icon.matIcon {
+              margin-right: 2px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .idxBox {
+    .circleBox {
+      width: 22px;
+      height: 22px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 1.5;
+
+      &.add {
+        background-color: var(--green);
+      }
+    }
+  }
+
+  .statuBox {
+    padding: 0 $space - 5;
+    min-width: 110px;
+    .status {
+      text-align: center;
+      padding: 2px 3px;
+      border: 1px solid var(--color0);
+      border-radius: $borderRMin2;
+      font-size: 0.9em;
+    }
+  }
+
+  .nameBox {
+    width: 100%;
+    padding-left: 33px;
+    margin-top: 10px;
+    position: relative;
+    &::after {
+      content: '';
+      width: 2px;
+      z-index: -1;
+      bottom: 0;
+      position: absolute;
+      top: 0;
+      left: 37px;
+      background-color: theme-var($--line);
+      z-index: -1;
+    }
+
+    li {
+      @include flex(RNo, flex-start, center, center);
+      margin-bottom: $space - 5;
+      position: relative;
+
+      &:not(.dragItem) {
+        padding-left: $space * 2;
+        &::after {
+          content: '';
+          width: 10px;
+          height: 10px;
+          border-radius: 100%;
+          text-align: center;
+          background-color: theme-var($--line);
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+        }
+      }
+
+      &.agree {
+        &::after {
+          background-color: var(--main);
+        }
+      }
+
+      app-autofill {
+        & + app-button {
+          margin-left: $space - 5;
+          margin-top: 0;
+          height: 36px;
+          margin-bottom: 0;
+
+          .btn {
+            height: 100%;
+          }
+        }
+      }
+      h6 {
+        color: theme-var($--contentTitle);
+        font-weight: $fwB;
+        span {
+          font-size: 0.8rem;
+          color: theme-var($--contentTitle);
+          display: block;
+        }
+      }
+
+      i {
+        margin: 0 $space;
+        color: theme-var($--contentTitle);
+      }
+      time {
+        color: theme-var($--contentTitle);
+
+        & + app-button {
+          margin: 0 0 0 $space - 10;
+        }
+
+        & + h6 {
+          margin-left: $space - 5;
+        }
+      }
+      & ~ li {
+        h6 {
+          font-size: 1.3em;
+        }
+      }
+
+      .content {
+        padding-left: $space;
+
+        textarea {
+          resize: none;
+          border-radius: $borderRMin2;
+          margin-top: $space - 10px;
+          background-color: theme-var($--LRBlock);
+          color: theme-var($--contentTitle);
+          font-style: italic;
+        }
+      }
+    }
+  }
+
+  li {
+    &.over {
+      .circleBox,
+      .status {
+        background-color: theme-var($--over);
+        color: theme-var($--contentTitle);
+      }
+      h6,
+      time,
+      i {
+        font-style: italic;
+      }
+    }
+    &.now {
+      .circleBox {
+        background-color: var(--green);
+        color: var(--white);
+      }
+      .status {
+        border-color: var(--green);
+        color: var(--green);
+      }
+      h6 {
+        color: theme-var($--font);
+      }
+    }
+    &.pending {
+      .circleBox,
+      .status {
+        background-color: theme-var($--contentTitle);
+        color: theme-var($--asideBlock);
+      }
+    }
+    &.reject {
+      .circleBox {
+        background-color: var(--red);
+        color: var(--white);
+      }
+      .status {
+        border-color: var(--red);
+        color: var(--red);
+      }
+    }
+    &.addSignOff {
+      .circleBox {
+        background-color: var(--purple);
+        color: var(--white);
+      }
+      .status {
+        border-color: var(--purple);
+        color: var(--purple);
+      }
+      h6 {
+        color: var(--white);
+      }
+    }
+
+    .insiders {
+      border-radius: $borderRMin2;
+      border: 2px solid var(--main);
+      padding: 3px 10px;
+    }
+  }
+
+  .tabBtnBlock {
+    margin-bottom: $space + 5;
+    ol {
+      border-bottom: 1px solid theme-var($--over);
+      li {
+        margin-right: $space + 5;
+        cursor: pointer;
+        color: theme-var($--ipt);
+        position: relative;
+        padding: 2px 0;
+
+        &.active {
+          color: var(--main);
+          &:after {
+            content: '';
+            width: 100%;
+            height: 4px;
+            background-color: var(--main);
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.statuBlock {
+  display: inline-block;
+  border-radius: 8px;
+  padding: $space - 10 $space - 9;
+  line-height: 1;
+
+  & > div {
+    @extend %flexNoWrapStartCenter;
+  }
+
+  &.red {
+    background-color: rgba(var(--sRed-rgb), 0.2);
+    .circle {
+      background-color: theme-var($--sRed);
+    }
+    .txt {
+      color: theme-var($--sRed);
+    }
+  }
+
+  &.orange {
+    background-color: rgba(var(--sOrange-rgb), 0.2);
+    .circle {
+      background-color: theme-var($--sOrange);
+    }
+    .txt {
+      color: theme-var($--sOrange);
+      text-transform: capitalize;
+    }
+  }
+
+  &.yellow {
+    background-color: rgba(var(--sYellow-rgb), 0.2);
+    .circle {
+      background-color: theme-var($--sYellow);
+    }
+    .txt {
+      color: theme-var($--sYellow);
+      text-transform: capitalize;
+    }
+  }
+
+  &.green {
+    background-color: rgba(var(--sGreen-rgb), 0.2);
+    .circle {
+      background-color: theme-var($--sGreen);
+    }
+    .txt {
+      color: theme-var($--sGreen);
+    }
+  }
+
+  &.blue {
+    background-color: rgba(var(--sBlue-rgb), 0.2);
+    .circle {
+      background-color: theme-var($--sBlue);
+    }
+    .txt {
+      color: theme-var($--sBlue);
+    }
+  }
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: var(--gray);
+    margin-right: $space - 11;
+    flex: 0 0 auto;
+  }
+}
+
+// 彈跳視窗
+.versionBlock {
+  ol {
+    position: relative;
+    &:after {
+      content: '';
+      width: 3px;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 5px;
+      background-color: theme-var($--rangeBG);
+      z-index: -1;
+    }
+    li {
+      margin: $space + 5 auto;
+      .flexNoWrapBetweenCenter {
+        width: 100%;
+      }
+      .l {
+        span {
+          display: block;
+          text-align-last: left;
+        }
+      }
+
+      .checkboxBlock {
+        input {
+          &[type='checkbox'] {
+            & + label {
+              &::before {
+                width: 10px;
+                height: 10px;
+                border-radius: 100%;
+                border-color: theme-var($--rangeBG);
+                background-color: theme-var($--rangeBG);
+                margin-right: $space;
+              }
+            }
+            &:checked {
+              & + label {
+                &::before {
+                  content: '';
+                  box-shadow: 0px 0px 6px var($--main);
+                  border-color: var($--main);
+                  background-color: var($--main);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.textbox {
+  visibility: hidden !important;
+  white-space: nowrap;
+  padding-right: $space - 10;
+}
+
+// 經銷商報價 - POS Data
+.POSDataBlock {
+  .caption {
+    margin-bottom: $space - 10;
+  }
+  
+  h5 {
+    color: var(--main);
+  }
+  h6 {
+    font-weight: 500;
+  }
+  // 全球
+  .global {
+    @include calc('width', '50% - 7.5px');
+
+    h5 {
+      color: theme-var($--analysis0);
+    }
+    li {
+      width: 100%;
+    }
+  }
+  // 客戶
+  .customer {
+    @include calc('width', '50% - 7.5px');
+    
+    h5 {
+      color: theme-var($--analysis1);
+    }
+    li {
+      width: 100%;
+    }
+  }
+  // 地區
+  .region, .disty, .local {
+    h5 {
+      color: theme-var($--analysis2);
+    }
+    h4 {
+      margin: $space - 10px $space;
+      font-size: 1em;
+      color: theme-var($--subTitle);
+    }
+  }
+
+  // 資料區塊
+  .dataBlock {
+    background-color: theme-var($--analysis);
+    border-radius: $borderRMin;
+    padding-top: $space - 5;
+    box-shadow: $shadow;
+    width: 100%;
+    margin: 1px 1px $space 1px;
+
+    & > ol {
+      @include flex(RW, space-between, flex-start, flex-start);
+      margin: 0 $space;
+    }
+  }
+  // 明細區塊
+  .POSDataInfoBlock {
+    & > div {
+      border: 1px solid theme-var($--ipt);
+      padding: $space - 5;
+      position: relative;
+      border-radius: $borderRMin2;
+      margin-bottom: $space;
+
+      ol {
+        padding-right: 50px;
+        li {
+          font-weight: $fwB;
+          padding: $space - 10 0;
+          @include flex(RNo, flex-start);
+
+          span {
+            text-align: right;
+            min-width: 120px;
+            color: theme-var($--caption);
+            display: block;
+            padding-right: $space - 5;
+          }
+        }
+      }
+
+      app-button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 0;
+      }
+    }
+  }
+}
+
+// 提示說明
+.tipBlock {
+  position: relative;
+
+  .caption {
+    font-size: 1em;
+    margin-bottom: $space;
+  }
+
+  .tipContentBlock {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 280px;
+    z-index: 2;
+    background-color: theme-var($--analysis);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: $borderRMin2;
+    overflow: hidden;
+    z-index: 5;
+
+    .scrollBlock {
+      max-height: 350px;
+      height: 100%;
+      padding: $space;
+      position: relative;
+      z-index: 1;
+    }
+  }
+
+  ol {
+    & ~ ol {
+      margin-top: $space;
+    }
+
+    li {
+      @include flex(RNo, flex-start);
+      padding: $space - 10 0;
+      font-size: 0.8em;
+
+      .errorMsgBox {
+        margin: 1px $space - 5 0 0;
+
+        .lineBox {
+          display: inline-block;
+          width: 5px;
+          height: 15px;
+          margin: 0 7px;
+
+          &.red {
+            background-color: var(--red);
+          }
+          &.green {
+            background-color: var(--green);
+          }
+        }
+      }
+    }
+
+    &.errorCode {
+      .errorMsgBox {
+        font-weight: $fwB;
+        text-align: right;
+        min-width: 25px;
+      }
+    }
+  }
+
+  .tipBg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 0;
+  }
+}
+
+.errorMsgBox {
+  .shape {
+    &.triangle {
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 10px 18px 10px;
+      border-color: transparent transparent var(--main) transparent;
+      &.green {
+        border-color: transparent transparent var(--errorGreen) transparent;
+      }
+
+      &.yellow {
+        border-color: transparent transparent var(--errorYellow) transparent;
+      }
+
+      &.orange {
+        border-color: transparent transparent var(--errorOrange) transparent;
+      }
+
+      &.red {
+        border-color: transparent transparent var(--errorRed) transparent;
+      }
+
+      &.blue {
+        border-color: transparent transparent var(--errorBlue) transparent;
+      }
+
+      &.purple {
+        border-color: transparent transparent var(--errorPurple) transparent;
+      }
+
+      &.greenBlue {
+        border-color: transparent transparent var(--errorGreenBlue) transparent;
+      }
+
+      &.pink {
+        border-color: transparent transparent var(--errorPink) transparent;
+      }
+
+      &.darkBlue {
+        border-color: transparent transparent var(--errorDarkBlue) transparent;
+      }
+
+      &.darkGreen {
+        border-color: transparent transparent var(--errorDarkGreen) transparent;
+      }
+
+      &.lightYellow {
+        border-color: transparent transparent var(--errorlightYellow) transparent;
+      }
+    }
+    &.square {
+      width: 18px;
+      height: 18px;
+      background-color: var(--main);
+    }
+    &.border {
+      width: 18px;
+      height: 18px;
+      border-width: 1px;
+      border-style: solid;
+      &.green {
+        border-color: var(--errorGreen);
+      }
+
+      &.yellow {
+        border-color: var(--errorYellow);
+      }
+
+      &.orange {
+        border-color: var(--errorOrange);
+      }
+
+      &.purple {
+        border-color: var(--errorPurple);
+      }
+
+      &.blue {
+        border-color: var(--errorBlue);
+      }
+    }
+  }
+}
+
+.dropList {
+  @include flex(RW, flex-start, flex-start, flex-start);
+  max-width: 100%;
+}
+
+.dragItem {
+  @include flex(RNo, flex-start, flex-end, flex-end);
+  margin-bottom: $space - 5;
+  position: relative;
+  margin: $space auto;
+}
+
+.actionBlock {
+  margin-top: $space + 5;
+}
+
+.cdk-drag {
+  & > div {
+    @include flex(RNo, space-between);
+    width: 100%;
+
+    & > div {
+      width: 80%;
+      @include flex(RNo, flex-start);
+      background-color: var(--purple);
+      padding: $space - 10 $space - 5;
+      border-radius: $borderRMin2;
+    }
+
+    app-button {
+      flex: 0 0 auto;
+    }
+
+    .customBtn {
+      padding: 0px;
+      margin-right: $space - 5;
+      .mat-icon {
+        display: block;
+        width: 20px;
+        height: 20px;
+        flex: 0 0 auto;
+      }
+    }
+
+    .matIcon {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+// 簽核拖曳
+.cdk-drag-preview {
+  z-index: $z-idx-popupBG !important;
+  box-sizing: border-box;
+  app-button {
+    opacity: 0 !important;
+  }
+}
+.cdk-drop-list-dragging {
+  app-button {
+    opacity: 0 !important;
+  }
+
+  .cdk-drag {
+    transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.statusBlock {
+  h5 {
+    margin: $space auto $space - 7;
+    color: var(--main);
+  }
+  ol {
+    position: relative;
+    li {
+      padding: $space - 5 0;
+      position: relative;
+      &:before {
+        content: '';
+        width: 10px;
+        display: block;
+        height: 10px;
+        border-radius: 100%;
+        background-color: theme-var($--rangeBG);
+      }
+      & > div {
+        margin: 0 $space;
+      }
+
+      &:not(:last-child) {
+        &:after {
+          content: '';
+          width: 2px;
+          height: 100%;
+          top: 50%;
+          left: 4px;
+          bottom: 0;
+          display: block;
+          background-color: theme-var($--rangeBG);
+          position: absolute;
+        }
+      }
+    }
+  }
+}
+
+.noRslBlock {
+  @include CenterBlock();
+  color: theme-var($--th);
+  text-align: center;
+  @include maxScreen(ipadRMax) {
+    position: static;
+    transform: none;
+    margin: $space * 2 auto;
+  }
+
+  .mat-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto;
+  }
+
+  h6 {
+    text-transform: uppercase;
+    color: theme-var($--th);
+    font-weight: $fwB;
+  }
+}
+
+// 輪播切換
+.CarouselSwitch {
+  display: flex;
+
+  & > h6 {
+    color: var(--sRed);
+    font-weight: bold;
+    background-color: rgba(var(--sRed-rgb), 0.2);
+    border-radius: 10px;
+    padding: 2px 7px;
+  }
+
+  mat-icon {
+    fill: var(--sRed);
+    cursor: pointer;
+  }
+}
+
+// user & disty Setting
+.userSettingBlock {
+  max-width: 350px;
+  margin: 20px auto;
+
+  .formBlock {
+    margin-top: $space + 5;
+  }
+}
+// 經銷商基本資料設定
+.distySettingBlock {
+  margin: 20px 0;
+  // height: auto !important; // 覆蓋layoutDetail
+  max-height: none !important;
+}
+
+// 顯示密碼按鈕
+.changePsdBtn {
+  position: absolute;
+  transform: translateY(-50%);
+  right: $matIconSpace;
+  cursor: pointer;
+  top: 50%;
+  .matIcon {
+    position: static;
+    transform: none;
+    display: block;
+  }
+  &:hover {
+    .matIcon {
+      color: var($--loginMain);
+    }
+  }
+}
+
+.columnBlock {
+  ol {
+    li {
+      &:first-child {
+        border-bottom: 1px solid theme-var($--line);
+        margin-bottom: $space - 5;
+        .checkboxBlock {
+          label {
+            padding-bottom: $space - 5;
+          }
+        }
+      }
+      .checkboxBlock {
+        label {
+          padding: $space - 8 0;
+          text-transform: capitalize;
+        }
+
+        input {
+          &:checked {
+            & + label {
+              color: var(--main);
+            }
+          }
+        }
+
+        &:hover {
+          label {
+            color: var(--main);
+          }
+        }
+      }
+
+      .delTagBox {
+        &.checkboxBlock {
+          input {
+            &:checked {
+              & + label {
+                color: theme-var($--font);
+              }
+            }
+          }
+        }
+
+        &:hover {
+          label,
+          .matIcon {
+            color: var(--main);
+          }
+
+          input {
+            &:checked {
+              & + label {
+                color: var(--main);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// 產品線簽核
+.sysProductLine {
+  // 線
+  .groupLine {
+    position: relative;
+
+    &::after {
+      content: '';
+      width: 2px;
+      height: 100%;
+      z-index: -1;
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      background-color: var(--line);
+    }
+
+    .circleBox {
+      background-color: var(--purple);
+      color: var(--white);
+
+      width: 22px;
+      height: 22px;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 1.5;
+
+      position: absolute;
+      left: 10px;
+      margin-top: 8px;
+    }
+    div.idxBox ~ .idxBox .circleBox {
+      margin-top: 38px;
+    }
+  }
+
+  // 表格區塊
+  .group {
+    margin-left: 50px;
+
+    // 標題區塊
+    .actionBlock {
+      @include flex(RNo, flex-start, center, center);
+      margin: 0 0 10px 0;
+
+      .inputBlock {
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
+.hubListBlock {
+  li {
+    padding: $space - 8 0;
+
+    span {
+      padding: $space - 10;
+      text-align: center;
+      text-transform: capitalize;
+      &.process {
+        background-color: var(--greenBlue);
+      }
+      &.done {
+        background-color: var(--green);
+        color: var(--white);
+      }
+    }
+  }
+}
+
+.partHover {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+//// OrgChartJs
+
+.orgBlock {
+  width: 100%;
+  height: 100%;
+  background-color: var(--white);
+}
+
+[data-id='search-icon'],
+[data-id='search'] {
+  svg {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+[data-id='cell-1'] {
+  input {
+    padding-top: 5px !important;
+  }
+}
+
+.chart-menu {
+  box-shadow: $shadow !important;
+  div {
+    svg {
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+.edit-wrapper {
+  bottom: 0;
+  background-color: theme-var($--asideBlock);
+  box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.16);
+  border-radius: $borderRMin 0 0 $borderRMin;
+
+  .edit-view {
+    @include flex('CNo', flex-start);
+
+    & > div {
+      width: 100%;
+    }
+
+    .edit-photo {
+      order: 1;
+      background-color: var(--color0) !important;
+
+      & > div {
+        z-index: 1;
+
+        &:not(.bg-ripple-container) {
+          width: 100% !important;
+          height: 30px !important;
+          bottom: $space;
+          top: 5px !important;
+          left: 0;
+          right: 0 !important;
+
+          svg {
+            display: none;
+          }
+
+          &:after {
+            content: url($check);
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-top: 3px;
+          }
+        }
+      }
+
+      .bg-ripple-container {
+        background-color: var(--main);
+        text-align: center;
+        border-radius: $borderR;
+        bottom: $space;
+        height: 30px;
+        top: 5px;
+        z-index: 0;
+        left: 15px;
+        right: 15px;
+        cursor: pointer;
+      }
+    }
+
+    .edit-fields {
+      order: 0;
+
+      & > div {
+        h6 {
+          color: theme-var($--th);
+          font-size: 1em;
+          margin: 20px auto 3px;
+          min-height: 22px;
+        }
+
+        div {
+          &:not(.selectBlock):not(.selectBorder):not(.contents):not(.switchBlock):not(.cancel) {
+            display: none;
+          }
+
+          &.cancel {
+            position: absolute;
+            top: -2px;
+            left: 60px;
+            div {
+              display: block !important;
+            }
+          }
+        }
+
+        ol.contents {
+          @include flex(RW, flex-start);
+
+          li {
+            font-weight: $fwB;
+            padding-top: 2px;
+            padding-bottom: 2px;
+
+            &:first-child {
+              font-size: 0.9em;
+              color: theme-var($--caption);
+              padding-right: $space - 7;
+            }
+
+            &:not(:last-child):not(:first-child) {
+              padding-right: $space - 5;
+              &::after {
+                content: ', ';
+              }
+            }
+          }
+        }
+
+        select {
+          padding: 8px 30px 8px 10px;
+          border-radius: $borderR;
+          color: theme-var($--font);
+          font-weight: $fwB;
+        }
+
+        input {
+          border-radius: $borderR;
+          border: 1px solid theme-var($--ipt) !important;
+          padding: $comPadding;
+          color: theme-var($--font) !important;
+          font-weight: $fwB;
+
+          &:focus {
+            border-color: theme-var($--iptFocus) !important;
+          }
+        }
+
+        hr {
+          border-color: var(--bG) !important;
+          margin: 8px auto 20px;
+        }
+      }
+    }
+  }
+}
+
+.checkboxBlock2 {
+  & > div {
+    &:first-child {
+      border-right: 1px solid theme-var(--border);
+    }
+  }
+
+  .dropListBlock {
+    height: 350px;
+  }
+
+  .checkedBox {
+    ol {
+      @include flex(RW, flex-start);
+
+      li {
+        width: auto;
+        &.top {
+          padding: $space - 8 0;
+          width: 100%;
+        }
+
+        &:not(.top) {
+          margin-right: $space - 10;
+          margin-bottom: $space - 5;
+        }
+      }
+    }
+  }
+}
+
+// 彈出核取方塊元件
+.popupSelectBlock {
+  .popupSelect{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: fit-content;
+    min-width: 173px;
+    max-width: 50vw;
+    max-height: 70vh;
+    overflow: auto;
+    padding-bottom: 10px;
+    background-color: theme-var($--LRBlock);
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.2);
+    border-radius: $borderRMin2;
+    z-index: 5;
+
+    ol {
+      padding-left: 1em;
+    }
+
+    li {
+      padding: 8px 10px 0 10px;
+    }
+
+    // 沒資料
+    .noData {
+      margin: 10px 0 0 10px;
+      text-transform: uppercase;
+      color: theme-var($--th);
+      font-weight: $fwB;
+    }
+
+    // 提示列表
+    .tipList {
+      position: sticky;
+      top: 0;
+      padding: 15px;
+      box-shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 0%);;
+      background-color: theme-var($--asideBlock);
+
+      h5 {
+        font-size: 1em;
+      }
+
+      li {
+        font-size: 0.8em;
+
+        .circle {
+          margin: 0 5px;
+        }
+      }
+    }
+
+    // 搜尋匡
+    .filter button {
+      position: absolute;
+      top: 50%;
+      right: 0;
+      transform: translateY(-50%);
+      right: 15px;
+
+      .mat-icon {
+        right: unset;
+      }
+    }
+
+    // 提示圓點
+    .circle {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-left: 5px;
+
+      &.green {
+        background-color: theme-var($--sGreen);
+      }
+      &.yellow {
+        background-color: theme-var($--sYellow);
+      }
+      &.orange {
+        background-color: var(--errorOrange);
+      }
+      &.red {
+        background-color: theme-var($--sRed);
+      }
+      &.blue {
+        background-color: theme-var($--sBlue);
+      }
+      &.greenBlue {
+        background-color: var(--errorGreenBlue);
+      }
+      &.purple {
+        background-color: var(--errorPurple);
+      }
+      &.pink {
+        background-color: var(--errorPink);
+      }
+      &.darkBlue {
+        background-color: var(--errorDarkBlue);
+      }
+      &.darkGreen {
+        background-color: var(--errorDarkGreen);
+      }
+      &.lightYellow {
+        background-color: var(--errorlightYellow);
+      }
+      &.errorRed {
+        background-color: var(--errorRed);
+      }
+      &.errorYellow {
+        background-color: var(--errorYellow);
+      }
+
+    }
+  }
+
+  .bgBlock {
+    position: fixed;
+    z-index: 4;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}

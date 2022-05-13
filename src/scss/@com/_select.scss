@@ -1,0 +1,148 @@
+select {
+  border: 0 none;
+  appearance: none;
+  display: block;
+  padding: $comPadding;
+  background-color: var(--color0);
+  letter-spacing: 0.02em;
+  padding-right: $space * 2;
+
+  // 最大尺寸
+  &.l {
+    padding: $comPaddingL;
+  }
+
+  option {
+    color: var($--black);
+
+    &:disabled {
+      color: var(--gray);
+    }
+  }
+}
+.select {
+  &Block {
+    display: block;
+    margin: 0 auto;
+    &.focus {
+      .selectBorder {
+        border-color: theme-var($--iptFocus);
+      }
+      b {
+        border-top-color: theme-var($--iptFocus);
+      }
+
+      label,
+      .matIcon {
+        color: theme-var($--iptFocus);
+      }
+
+      select {
+        color: theme-var($--font);
+      }
+    }
+    label {
+      @extend %Labels;
+    }
+
+    select {
+      width: 100%;
+      color: theme-var($--ipt);
+      & + b {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: $space - 5;
+        width: 0;
+        height: 0;
+        pointer-events: none;
+        border-style: solid;
+        border-width: 8px 5px 0 5px;
+        border-color: theme-var($--ipt) transparent transparent transparent;
+      }
+      &.color--font {
+        color: theme-var($--font);
+        font-weight: $fwB;
+      }
+    }
+    // 使用自定義的樣式去顯示名稱
+    &.notShow {
+      .selectBorder {
+        select {
+          opacity: 0;
+          filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          padding: 0;
+        }
+        &::before {
+          content: attr(data-selected);
+          padding: $comPadding;
+          padding-left: 35px;
+          display: block;
+        }
+      }
+    }
+
+    &.required {
+      label {
+        &:after {
+          content: '*';
+          display: inline-block;
+        }
+      }
+    }
+
+    &.errorMsg {
+      .selectBorder {
+        border-color: var($--red);
+      }
+
+      label {
+        color: var($--red);
+      }
+
+      select {
+        & + b {
+          border-color: var($--red) transparent transparent transparent;
+        }
+      }
+    }
+  }
+  &Border {
+    border-radius: $borderR;
+    position: relative;
+    width: 100%;
+    &:not(.noBorder) {
+      border: 1px solid theme-var($--ipt);
+    }
+
+    &.noArrow {
+      b {
+        display: none;
+      }
+    }
+
+    &.iconR {
+      .matIcon {
+        right: $space - 10;
+        left: auto;
+      }
+    }
+
+    .matIcon {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: $space - 10;
+      pointer-events: none;
+
+      & + select {
+        padding-left: 35px;
+      }
+    }
+  }
+}

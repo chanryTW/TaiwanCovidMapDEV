@@ -1,0 +1,364 @@
+.btnBlock {
+  app-button,
+  .btn {
+    &:not(:last-child) {
+      margin-right: $space;
+    }
+  }
+
+  &.w50 {
+    @extend %flexNoWrapBetweenCenter;
+    app-button {
+      @include calc('width', '100% / 2 - 5px');
+      margin: 0;
+    }
+    .btn {
+      width: 100%;
+    }
+  }
+
+  &.fullWidth {
+    app-button,
+    .btn {
+      width: 100%;
+    }
+
+    app-button {
+      & ~ * {
+        margin-top: $space;
+        display: block;
+      }
+    }
+  }
+
+  &.start {
+    @extend %flexNoWrapStartCenter;
+  }
+  &.center {
+    @extend %flexNoWrapCenter;
+  }
+}
+
+.btn {
+  padding: $comPadding;
+  text-align: center;
+  border-radius: $borderR;
+  background-color: var(--main);
+  color: var(--white);
+  text-transform: uppercase;
+  word-break: keep-all;
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1;
+  position: relative;
+  border: 1px solid var(--main);
+  letter-spacing: 0.02em;
+
+  @include btnborderColorSet;
+
+  // icon
+  .mat-icon.matIcon {
+    width: 18px;
+    height: 18px;
+    margin-right: 2px;
+  }
+
+  &[disabled],
+  &.disabled {
+    filter: opacity(0.7) !important;
+    cursor: not-allowed;
+  }
+
+  .loadBox {
+    & + div {
+      display: none;
+    }
+  }
+
+  // 最大尺寸
+  &.l {
+    padding: $comPaddingL;
+  }
+
+  &.m {
+    padding: $comPaddingM;
+  }
+
+  &.s {
+    padding: 3px 5px;
+    font-size: 15px;
+    .mat-icon.matIcon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.full {
+    &:focus,
+    &:active,
+    &:visited,
+    &:hover {
+      &::after {
+        visibility: visible;
+      }
+    }
+
+    // 滿版背景
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: -1px;
+      right: -1px;
+      z-index: 0;
+      background-color: rgba(var(--black-rgb), 0.1);
+      visibility: hidden;
+    }
+    @include btnborderfullColorSet;
+
+    &[disabled] {
+      &::after {
+        visibility: hidden;
+      }
+    }
+
+    &.b--filter {
+      div {
+        color: theme-var($--bG);
+      }
+    }
+
+    .spin {
+      color: var(--white);
+    }
+  }
+
+  &.bcf {
+    border-color: theme-var($--title);
+    background-color: var(--color0);
+    div {
+      color: theme-var($--title);
+    }
+
+    &.light {
+      border-color: theme-var($--tableBtn);
+      div {
+        color: theme-var($--tableBtn);
+      }
+    }
+    @include bcfHover;
+  }
+
+  &.bc {
+    background-color: var(--color0);
+    @include bcHover;
+  }
+
+  div {
+    font-size: $fzDefault;
+    position: relative;
+    z-index: 0;
+    @extend %flexNoWrapCenter;
+  }
+
+  &.bg0 {
+    background-color: var(--color0);
+  }
+
+  &.noBorder {
+    border: 0;
+  }
+
+  &.loading {
+    .normal {
+      display: none;
+    }
+  }
+
+  &.br0 {
+    border-radius: 0;
+  }
+}
+
+%customBtn {
+  padding: $comPadding;
+  cursor: pointer;
+}
+
+.customBtn {
+  @extend %customBtn;
+}
+
+app-nav-btn,
+.navBtn {
+  width: 33px;
+  cursor: pointer;
+
+  svg {
+    path {
+      fill: var(--main);
+    }
+  }
+}
+
+app-nav-btn {
+  margin-right: $space - 10;
+}
+
+.navBtn {
+  padding: $space - 10;
+  border-radius: 100%;
+
+  &:hover {
+    background-color: rgba(var(--over-rgb), 0.5);
+  }
+}
+
+.mergeBlock {
+  .btn {
+    &:first-child {
+      border-radius: $borderR 0 0 $borderR;
+    }
+    &:last-child {
+      border-radius: 0 $borderR $borderR 0;
+    }
+  }
+}
+
+.tableBtnBlock {
+  margin-bottom: $space - 6;
+  @include flex(RW);
+  .LBlock {
+    @include flex(RNo, flex-start, flex-end, flex-end);
+    & > * {
+      & ~ * {
+        margin-left: $space - 5;
+      }
+    }
+  }
+
+  .RBlock {
+    @include flex(RNo, flex-end);
+    .lineBlock {
+      align-self: stretch;
+      min-width: auto;
+      min-height: auto;
+      margin: 0 0 0 $space;
+    }
+    app-button {
+      margin: 2.5px 0;
+      @include maxScreen(ipadRMax) {
+        margin: 0;
+      }
+
+      & ~ app-button {
+        margin-left: $space - 10;
+        @include maxScreen(ipadRMax) {
+          margin: 0;
+        }
+      }
+    }
+    @include maxScreen(ipadRMax) {
+      .btn {
+        margin-left: 3px;
+        &:not(.column_s):not(.historyList_s) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .inputBlock {
+    & ~ * {
+      margin-left: $space - 5;
+    }
+
+    label {
+      font-size: 0.9em;
+    }
+
+    &.search {
+      position: relative;
+      margin-left: 0;
+
+      .textbox {
+        position: absolute;
+        white-space: nowrap;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    &.batch {
+      margin-right: $space - 10;
+
+      .inputBorder {
+        position: relative;
+        &:after {
+          content: '%';
+          position: absolute;
+          top: 50%;
+          right: 4px;
+          transform: translateY(-50%);
+          color: theme-var($--title);
+          z-index: -1;
+        }
+      }
+
+      input {
+        padding: $space - 9 $space - 5;
+        width: 100px;
+        padding-right: 23px;
+      }
+    }
+  }
+
+  .noticeBlock {
+    margin-bottom: 3px;
+    span {
+      white-space: nowrap;
+    }
+  }
+
+  .itemCount {
+    display: inline-block;
+    b {
+      font-weight: $fwB;
+      padding: 0 5px;
+      color: var(--caption);
+    }
+  }
+}
+
+.LBlockBtn {
+  background-color: theme-var($--LRBlock);
+  border-radius: 0 $borderRMin $borderRMin 0;
+  display: inline-block;
+  position: absolute;
+  top: $space - 10;
+  right: -13px;
+  z-index: 2;
+  .mat-icon {
+    color: theme-var($--subTitle);
+    display: block;
+  }
+
+  .customBtn {
+    padding: 4px 7px;
+  }
+}
+
+.closeBtn {
+  @extend %customBtn;
+  right: $matIconSpace;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  .matIcon {
+    position: static;
+    transform: none;
+  }
+}

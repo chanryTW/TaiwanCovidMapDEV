@@ -1,0 +1,149 @@
+.alertBlock {
+  border-radius: $borderRMin;
+  box-shadow: $shadow;
+  margin-top: 50px;
+  min-width: 300px;
+  max-width: 500px;
+  padding: $space;
+  z-index: $z-idx-1;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &.green {
+    background-color: var($--green);
+    .btn.bcf div {
+      color: var($--green);
+    }
+  }
+
+  &.red {
+    background-color: var($--red);
+    .btn.bcf div {
+      color: var($--red);
+    }
+  }
+
+  &.warning {
+    background-color: var($--yellow);
+    .btn.bcf div {
+      color: var($--yellow);
+    }
+  }
+
+  .alertBox {
+    @include flex(RNo, flex-start);
+    position: relative;
+  }
+
+  .iconBox {
+    border-radius: $borderRMin $borderRMin 0 0;
+    text-align: center;
+    position: relative;
+
+    .mat-icon {
+      fill: theme-var($--bG);
+      width: 35px;
+      height: 35px;
+      display: block;
+    }
+  }
+
+  .contentBox {
+    margin: 0 0px 0 $space - 5;
+    padding-right: 40px;
+
+    h6 {
+      font-size: 25px;
+      font-weight: $fwB;
+      text-transform: uppercase;
+      color: theme-var($--bG);
+      text-align: left;
+    }
+
+    p {
+      text-align: left;
+      text-transform: capitalize;
+      color: theme-var($--bG);
+      word-break: break-word;
+      line-height: 1.5;
+    }
+  }
+
+  app-button {
+    position: absolute;
+    right: -16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .btn.bcf div {
+    filter: brightness(0.8);
+  }
+}
+
+.processingAlertBlock,
+.processingType1AlertBlock {
+  margin-top: $space - 10;
+  min-width: 260px;
+  max-width: 500px;
+  z-index: $z-idx-1;
+  position: fixed;
+  top: 0;
+  right: $space;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: $space - 7;
+
+  & > div {
+    background-color: var(--yellow);
+    padding: $space - 5;
+    border-radius: $borderRMin;
+    box-shadow: 0px 0px 8px var(--yellow);
+    &.ok {
+      background-color: var(--green);
+      box-shadow: 0px 0px 8px var(--green);
+    }
+
+    & ~ div {
+      margin-top: $space - 7;
+    }
+  }
+
+  p {
+    font-weight: $fwB;
+    margin-bottom: $space - 10;
+  }
+
+  h6 {
+    font-size: 1em;
+    line-height: 1.5;
+    text-transform: uppercase;
+    @include flex(RNo, flex-start);
+  }
+
+  .matIcon {
+    margin-right: $space - 5;
+  }
+}
+
+.processingType1AlertBlock {
+  & > div {
+    background-color: var(--greenBlue);
+    box-shadow: 0px 0px 8px var(--greenBlue);
+    &.ok {
+      background-color: var(--green);
+      box-shadow: 0px 0px 8px var(--green);
+    }
+    h6 {
+      text-transform: capitalize;
+    }
+  }
+}
+
+.notify {
+  .processingAlertBlock {
+    margin-top: 90px;
+  }
+}

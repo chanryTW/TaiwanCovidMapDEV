@@ -1,0 +1,155 @@
+.popupBlock {
+  padding: 40px $space $space $space;
+  width: 100%;
+  overflow: hidden;
+  @include flex(RNo, center, flex-start, center);
+  height: 100%;
+
+  &.s {
+    .popupContentBlock {
+      max-width: 400px;
+    }
+  }
+  &.m {
+    .popupContentBlock {
+      max-width: 600px;
+    }
+  }
+  &.l {
+    .popupContentBlock {
+      max-width: 90%;
+    }
+  }
+
+  &.auto {
+    .popupContentBlock {
+      width: auto;
+    }
+  }
+
+  h2 {
+    text-transform: uppercase;
+    margin-bottom: $space;
+    color: var(--main);
+    font-weight: $fwB;
+  }
+  .popupContentBlock {
+    background-color: theme-var($--LRBlock);
+    border-radius: $borderRMin;
+    box-shadow: $shadow;
+    max-height: 100%;
+    width: 100%;
+    @include flex(CNo, flex-start, center, center);
+
+    & > div {
+      width: 100%;
+    }
+
+    .block {
+      box-shadow: none;
+      padding: 0;
+
+      &.list {
+        ol {
+          li {
+            &:not(:last-child) {
+              padding-bottom: $space;
+            }
+          }
+        }
+      }
+    }
+
+    .scrollBlock {
+      padding: $space - 5 $space - 5 0;
+    }
+
+    .btnBox {
+      @include flex(RNo, center, center, center);
+      padding: $space - 5;
+
+      app-button,
+      .btn {
+        width: 100%;
+      }
+      app-button {
+        & + app-button {
+          margin-left: $space - 7;
+        }
+
+        .btn {
+          border-radius: $borderR;
+        }
+      }
+    }
+
+    &.msgBlock {
+      max-width: 400px;
+      padding-bottom: $space + 5;
+
+      .scrollBlock,
+      .btnBox {
+        max-width: 100%;
+        width: 100%;
+        padding: 0 $space;
+      }
+
+      .iconBox {
+        text-align: center;
+        border-radius: $borderRMin $borderRMin 0 0;
+        padding: $space;
+        text-align: center;
+        color: #fff;
+
+        .matIcon {
+          margin: 0 auto;
+          width: 60px;
+          height: 60px;
+        }
+      }
+
+      h2 {
+        margin: $space auto 0;
+        text-align: center;
+        color: theme-var($--font);
+      }
+
+      p {
+        text-align: center;
+        margin: $space + 5 auto $space * 2;
+
+        // 詢價歷史資料彈跳視窗使用
+        ol {
+          margin-top: $space;
+          li {
+            font-weight: $fwB;
+            color: var(--red);
+            padding: 2px 0;
+          }
+        }
+      }
+
+      .btnBox {
+        @include flex(RNo, space-between);
+      }
+
+      &.statu0 {
+        .iconBox {
+          background-color: var(--green);
+        }
+      }
+
+      &.statu1 {
+        .iconBox {
+          background-color: var(--red);
+        }
+      }
+
+      &.statu2 {
+        .iconBox {
+          background-color: var(--yellow);
+        }
+      }
+    }
+  }
+}

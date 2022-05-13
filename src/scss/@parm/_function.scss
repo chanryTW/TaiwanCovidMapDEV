@@ -1,0 +1,16 @@
+// 用於呼叫變數
+@function theme-var($key, $fallback: null, $map: $theme-map-lights) {
+  @if not map-has-key($map, $key) {
+    @error "key: '#{$key}', is not a key in map: #{$map}";
+  }
+  @if ($fallback) {
+    @return var($key, $fallback);
+  } @else {
+    @return var($key);
+  }
+}
+
+// 轉換hex to rgb
+@function hexToRGB($hex) {
+  @return (red($hex), green($hex), blue($hex));
+}

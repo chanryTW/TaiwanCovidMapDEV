@@ -1,0 +1,826 @@
+.table {
+  width: 100%;
+  border: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border-bottom: 1px solid theme-var($--bG);
+
+  .customBtn {
+    position: absolute;
+    @include CenterBlock('left');
+    left: 7%;
+    .mat-icon.matIcon {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &.view {
+    .inputBlock {
+      display: none;
+    }
+
+    .textbox {
+      visibility: visible !important;
+    }
+
+    tbody {
+      & > tr {
+        & > td {
+          &.noBorder {
+            border-bottom: 1px solid theme-var($--bG);
+          }
+        }
+      }
+    }
+  }
+
+  &.history {
+    max-width: 700px;
+    position: sticky;
+    right: $space;
+    margin: 0 auto;
+    margin-right: 0;
+  }
+
+  &.border {
+    th,
+    td {
+      &:not(:last-child) {
+        border-right: 1px solid theme-var($--bG);
+      }
+      &.borderRnone {
+        border-right: 0;
+      }
+      &.action {
+        box-shadow: inset 2px 0px 0 theme-var($--bG);
+      }
+
+      &.checkboxBoxFixL {
+        box-shadow: none;
+        padding-left: $space - 7;
+        padding-right: $space - 7;
+        &:not(&.hidden) {
+          & + .fixL {
+            left: 33px;
+
+            & + .left2 {
+              left: 194px;
+
+              & + .left3 {
+                left: 262px;
+              }
+            }
+          }
+        }
+      }
+
+      &.fixL {
+        box-shadow: inset -2px 0px 0 theme-var($--bG), inset 0 -2px 0 theme-var($--bG);
+        border-right: 0;
+      }
+    }
+
+    td {
+      &.fixL {
+        box-shadow: inset -2px 0px 0 theme-var($--bG);
+      }
+    }
+  }
+
+  &.batchs {
+    td.batchs {
+      .checkboxBlock {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+        right: 0;
+        bottom: 0;
+
+        label {
+          height: 100%;
+
+          &:before {
+            margin: $space - 10;
+          }
+        }
+      }
+    }
+  }
+
+  thead {
+    tr {
+      th {
+        &:not(.noBorder) {
+          box-shadow: inset 0 -2px 0 theme-var($--bG);
+        }
+        &.partNo {
+          min-width: 200px;
+        }
+      }
+      &.fwL {
+        th {
+          &:not(.normal) {
+            & > div {
+              font-weight: $fwL;
+            }
+          }
+        }
+      }
+
+      &.m {
+        th {
+          padding-top: $space - 5;
+          padding-bottom: $space - 5;
+          position: sticky;
+          top: -1px;
+          z-index: 2;
+
+          &.fixL {
+            z-index: 3;
+          }
+        }
+      }
+
+      &.top {
+        cursor: pointer;
+        th {
+          & > div {
+            color: theme-var($--th);
+          }
+        }
+        &.hide {
+          th {
+            padding: 8px;
+            & > div {
+              display: none;
+            }
+          }
+        }
+
+        &.fix {
+          th {
+            position: sticky;
+            top: -1px;
+          }
+
+          & + .m {
+            th {
+              top: 37px;
+            }
+          }
+        }
+      }
+
+      &.filter {
+        border-bottom: 3px solid theme-var($--border);
+        app-button {
+          display: block;
+          width: 100%;
+          & ~ app-button {
+            margin-top: 3px;
+            margin-left: 0;
+          }
+          .btn {
+            width: 100%;
+            height: 100%;
+          }
+        }
+
+        th {
+          padding: 4px 8px 8px;
+        }
+
+        .line {
+          &:after {
+            background-color: theme-var($--ipt);
+          }
+        }
+
+        .selectBorder,
+        .inputBorder {
+          position: static;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          border-radius: 0;
+          input {
+            transform: none;
+            position: static;
+            background-color: var(--color0) !important;
+            color: theme-var($--font) !important;
+          }
+        }
+
+        .sortBox {
+          min-width: 130px;
+          @include flex(RNo, space-evenly);
+
+          input[type='radio'] {
+            &:checked {
+              & + label {
+                color: var(--main);
+              }
+            }
+          }
+
+          label {
+            font-size: 0.8em;
+            cursor: pointer;
+            width: 49.5%;
+            text-align: center;
+            padding: $space - 10 2px;
+          }
+
+          .line {
+            height: 15px;
+          }
+        }
+      }
+    }
+  }
+
+  tbody {
+    & > tr {
+      &:not(:last-child) {
+        td,
+        th {
+          &:not(.noBorder) {
+            border-bottom: 1px solid theme-var($--bG);
+          }
+        }
+      }
+
+      &.sign {
+        &Reject {
+          .checkboxBoxFixL {
+            box-shadow: inset 5px 0px 0 var(--red), inset -2px 0px 0 theme-var($--bG);
+            &.hidden {
+              & + td {
+                box-shadow: inset 5px 0px 0 var(--red), inset -2px 0px 0 theme-var($--bG);
+              }
+            }
+          }
+        }
+        &Agree {
+          .checkboxBoxFixL {
+            box-shadow: inset 5px 0px 0 var(--green), inset -2px 0px 0 theme-var($--bG);
+            &.hidden {
+              & + td {
+                box-shadow: inset 5px 0px 0 var(--green), inset -2px 0px 0 theme-var($--bG);
+              }
+            }
+          }
+        }
+      }
+
+      &.sub {
+        background-color: theme-var($--subTable);
+        & > td {
+          padding: $space $space 50px;
+        }
+
+        .table {
+          border: 1px solid theme-var($--bG);
+          background-color: theme-var($--LRBlock);
+
+          th,
+          td {
+            &:not(&.percent):not(&.txtOnly) {
+              padding: $space - 10 $space - 8;
+              box-shadow: none;
+            }
+          }
+        }
+      }
+
+      &.change {
+        background-color: rgba(var(--main-rgb), 0.05);
+      }
+
+      &.error {
+        background-color: rgba(var(--red-rgb), 0.2);
+      }
+
+      &.notFound {
+        border: 2px solid var(--red);
+
+        .bgTable.seq {
+          color: var(--white);
+          background-color: var(--red);
+        }
+      }
+
+      &:hover {
+        background-color: theme-var($--tableHover);
+        .action,
+        .bgTable {
+          background-color: theme-var($--tableHover);
+        }
+
+        &.sub {
+          background-color: theme-var($--subTable);
+        }
+      }
+    }
+  }
+
+  span {
+    &.sub {
+      display: block;
+      color: theme-var($--th);
+    }
+    &.unit {
+      color: theme-var($--th);
+      vertical-align: middle;
+    }
+  }
+
+  .matIcon.float {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+  }
+
+  td,
+  th {
+    text-align: left;
+    padding: $space - 5;
+    position: relative;
+    word-break: keep-all;
+    white-space: nowrap;
+    line-height: 1.2;
+
+    .checkboxBlock {
+      input {
+        &[type='checkbox'] {
+          & + label {
+            &::before {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    &.taR,
+    &.num {
+      text-align: right;
+      input {
+        text-align: right;
+      }
+    }
+
+    &.taC {
+      text-align: center;
+    }
+
+    &.action {
+      text-align: right;
+      position: sticky;
+      right: -1px;
+      background-color: theme-var($--LRBlock);
+
+      app-button {
+        &:last-child {
+          .btn {
+            &:not(&.bcf) {
+              padding-right: 0;
+            }
+          }
+        }
+
+        & ~ app-button {
+          margin-left: $space - 5;
+          @include maxScreen(ipadRMax) {
+            margin-left: 0;
+          }
+        }
+      }
+
+      .btn {
+        padding: 2px 3px;
+        @include maxScreen(ipadRMax) {
+          &:not(.detail_s):not(.info_s):not(.statushistory_s) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &.fixL {
+      position: sticky;
+      left: -1px;
+      z-index: 2;
+
+      &.partNo {
+        padding-left: 25px;
+        line-height: 1;
+        .btn {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 0;
+          padding: 0;
+          padding-left: 2px;
+        }
+      }
+
+      &.left2 {
+        left: 204px;
+      }
+
+      &.left3 {
+        left: 272px;
+      }
+    }
+
+    &.hover {
+      background-color: theme-var($--tableHover);
+    }
+
+    &.hidden {
+      display: none !important;
+    }
+
+    &.seq {
+      font-size: 0.8em;
+      text-align: center;
+      padding-left: $space - 7;
+      padding-right: $space - 7;
+      color: theme-var(--th);
+    }
+
+    &.groupTitle {
+      padding-left: 25px;
+
+      &:after,
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 10px;
+        background-color: theme-var($--rangeBG);
+      }
+
+      &:after {
+        height: 100%;
+        top: 0;
+        width: 2px;
+      }
+
+      &:before {
+        width: 14px;
+        top: 47%;
+        height: 2px;
+      }
+
+      &.groupTitleLast {
+        &:after {
+          height: 50%;
+          bottom: 0;
+        }
+      }
+    }
+
+    &.minW {
+      min-width: 85px;
+    }
+
+    &.minWMidd {
+      min-width: 150px;
+    }
+
+    &.minWMax {
+      min-width: 250px;
+    }
+
+    &.percent {
+      .inputBlock {
+        &.errorMsg {
+          .inputBorder {
+            &:after {
+              display: none;
+            }
+          }
+          &.focus {
+            .inputBorder {
+              &:after {
+                display: block;
+                color: var(--red);
+              }
+              b {
+                visibility: hidden;
+              }
+            }
+          }
+        }
+
+        & + .textbox {
+          padding-right: $space + 5;
+        }
+      }
+      .inputBorder {
+        input {
+          padding-right: $space * 2;
+        }
+        &:after {
+          content: '%';
+          font-weight: normal;
+          display: block;
+          font-size: 0.8em;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: $space - 5;
+          z-index: 0;
+          pointer-events: none;
+        }
+      }
+
+      &.txtOnly {
+        padding-right: $space * 2 - 5;
+        position: relative;
+        &:after {
+          content: '%';
+          display: block;
+          font-size: 0.8em;
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          right: $space - 5;
+          z-index: 0;
+          pointer-events: none;
+        }
+      }
+    }
+
+    .inputBlock,
+    .selectBlock {
+      input {
+        vertical-align: middle;
+        position: relative;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 100%;
+
+        &:not(&[readOnly]):not(&[disabled]) {
+          background-color: theme-var($--editIptTable);
+        }
+      }
+
+      &.required {
+        input,
+        textarea,
+        select {
+          &:not(&[readOnly]):not(&[disabled]) {
+            background-color: theme-var($--requiredIptTable);
+          }
+        }
+      }
+
+      &.ng-touched.ng-valid {
+        background-color: var(--color0);
+      }
+
+      &.textareaBox {
+        width: 150px;
+        max-height: 200px;
+      }
+      textarea {
+        vertical-align: middle;
+        position: relative;
+        top: 0;
+        height: 100%;
+        max-height: 100%;
+        &:not(&[readOnly]):not(&[disabled]) {
+          background-color: theme-var($--editIptTable);
+        }
+      }
+    }
+
+    // 歷史報價清單
+    .historys {
+      & > div{
+        margin-right: 20px;
+      }
+    }
+
+    .btn {
+      &:not(.s) {
+        .mat-icon.matIcon {
+          width: 22px;
+          height: 22px;
+          @include maxScreen(ipadRMax) {
+            width: 18px;
+            height: 18px;
+          }
+        }
+      }
+    }
+
+    .inputBlock {
+      &.notFocus {
+        input {
+          opacity: 0;
+        }
+        &.focus {
+          & + .textbox {
+            visibility: visible !important;
+          }
+        }
+      }
+
+      &:not(&.notFocus):not(&.focus) {
+        input {
+          color: var(--color0);
+        }
+      }
+
+      &.focus {
+        & + .textbox {
+          visibility: hidden !important;
+        }
+
+        input {
+          &[type='number'] {
+            & + b {
+              visibility: hidden !important;
+            }
+          }
+        }
+      }
+
+      & + .textbox {
+        visibility: visible !important;
+        padding-right: 0;
+      }
+    }
+
+    .inputBlock.errorMsg {
+      .inputBorder {
+        input {
+          padding-right: $space * 2;
+        }
+      }
+
+      & + .textbox {
+        padding-right: $space + 5;
+      }
+    }
+
+    .inputBorder,
+    .dropBlock,
+    .selectBorder {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 0;
+      border-color: theme-var($--bG);
+
+      .maxLen {
+        position: absolute;
+        right: $space - 5;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+
+    .selectBorder {
+      select {
+        height: 100%;
+      }
+    }
+
+    app-autofill {
+      min-width: 250px;
+      display: block;
+    }
+
+    .dropBlock {
+      .hintBlock {
+        display: none;
+      }
+    }
+
+    .colBox {
+      div {
+        span {
+          display: block;
+          color: theme-var($--caption);
+        }
+        & + span {
+          margin-left: $space;
+          display: block;
+        }
+      }
+    }
+  }
+
+  th {
+    color: theme-var($--th);
+    text-transform: capitalize;
+
+    p {
+      color: theme-var($--th);
+    }
+
+    .colBox {
+      div {
+        min-width: 140px;
+        color: theme-var($--th);
+
+        & + span {
+          color: theme-var($--th);
+        }
+      }
+      &.none {
+        div {
+          min-width: auto;
+        }
+      }
+    }
+  }
+
+  td {
+    .sub {
+      color: var($--gray);
+    }
+    padding: $space - 5;
+
+    .colBox {
+      div {
+        min-width: 185px;
+
+        &.s {
+          min-width: 90px;
+        }
+
+        &.m {
+          min-width: 170px;
+        }
+
+        span {
+          font-size: 0.9em;
+        }
+      }
+    }
+
+    &.subBG {
+      background-color: theme-var($--subTable);
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        background-color: theme-var($--subTable);
+        height: 2px;
+      }
+    }
+
+    .errorMsgBox {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      .shape {
+        &.triangle {
+          border-width: 0 4px 7px 4px;
+        }
+      }
+    }
+  }
+
+  // 縮排
+  .paddingL2 {
+    padding-left: 2em;
+  }
+}
+
+.fixContentBlock {
+  .table {
+    &.border {
+      td,
+      th {
+        border-color: theme-var($--thBG) !important;
+      }
+
+      th {
+        border-bottom: 1px solid theme-var($--thBG);
+      }
+
+      tfoot {
+        tr {
+          border-color: theme-var($--thBG) !important;
+        }
+      }
+    }
+  }
+}
