@@ -10,6 +10,11 @@
 .sideBlock {
   width: 500px;
   height: 100%;
-  background-color: theme-var($--blockBG);
   box-shadow: $shadow;
+  padding: $padding * 2;
+  background-color: theme-var($--blockBG);
+
+  > h3  {
+    text-align: center;
+  }
 }

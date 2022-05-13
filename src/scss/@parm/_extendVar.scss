@@ -7,3 +7,26 @@
   text-transform: capitalize;
   font-size: 1em;
 }
+
+// 毛玻璃
+%glassmorphism, %glassmorphism_noBorder {
+  backdrop-filter: blur(10px);
+}
+.light {
+  %glassmorphism {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid rgba(255, 255, 255, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  %glassmorphism, %glassmorphism_noBorder {
+    background-color: rgba(255, 255, 255, 0.04);
+  }
+}
+.dark {
+  %glassmorphism {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  %glassmorphism, %glassmorphism_noBorder {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+}

@@ -1,9 +1,6 @@
 ////////////////////////////// 文字
-$fontFamily: Helvetica, '蘋方-繁', 'PingFang TC', '微軟正黑體', 'Microsoft JhengHei',
+$fontFamily: Helvetica, '蘋方-繁', 'Noto Sans TC' ,'PingFang TC', '微軟正黑體', 'Microsoft JhengHei',
   'Helvetica Neue', 'Helvetica', 'Arial', 'Utkal', sans-serif;
-
-$fontFamilyB: Helvetica, '標楷體', 'BiauKai', 'DFKai-sb', 'Helvetica Neue', 'Helvetica', 'Arial',
-  sans-serif;
 
 // 路徑
 $imgUrl: '/assets/image/';
@@ -24,6 +21,7 @@ $borderRMin: 10px;
 $borderRMax: 20px;
 $borderLogin: 100px;
 
+// 陰影
 $shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
 
 // input + maticon 的(L|R)位置
@@ -33,6 +31,8 @@ $comPaddingM: $space - 10;
 // input, select, button padding
 $comPadding: $space - 7 $space - 5;
 $comPaddingL: $space - 5 $space;
+
+$padding: 15px;
 
 $navWL: 230px;
 $navWM: 60px;

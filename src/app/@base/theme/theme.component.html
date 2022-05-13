@@ -1,0 +1,9 @@
+<section class="themeBlock" #themeSwitcher>
+  <div
+    class="themeBtn"
+    (click)="switch()"
+    [ngClass]="(selected$ | async) === themes[0] ? themes[0] : themes[1]"
+  >
+    <mat-icon class="matIcon" svgIcon="white-balance-sunny"></mat-icon>
+  </div>
+</section>

@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/taiwan-covid-map",
+            "outputPath": "../Taiwan-Covid-Map-master/wwwroot",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +28,12 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "mdi.svg",
+                "input": "./node_modules/@mdi/angular-material",
+                "output": "assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -47,6 +52,24 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
+                }
+              ],
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "",
+                  "ignore": [
+                    "node_modules/**/*",
+                    ".git/**/*"
+                  ],
+                  "output": "./../frontend"
+                },
+                {
+                  "glob": "mdi.svg",
+                  "input": "node_modules/@mdi/angular-material",
+                  "output": "assets"
                 }
               ],
               "fileReplacements": [
