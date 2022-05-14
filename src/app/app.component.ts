@@ -3,7 +3,8 @@ import { environment } from 'src/environments/environment';
 import * as mapboxgl from 'mapbox-gl';
 import { ApiService } from './@base/api/api.service';
 import { HttpClient } from '@angular/common/http';
-import { FeatureCollection, GeoJSON } from './app';
+import { AntigenSelfTestStore, AntigenSelfTestStoreMap, AntigenSelfTestStoreType, FeatureCollection, GeoJSON } from './app';
+import { window } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,10 @@ export class AppComponent implements OnInit, AfterViewInit {
   zoom: number = 13;
 
   /** 標記點 */
-  markers: any;
+  markers: AntigenSelfTestStore[] = [];
+
+  /** 現在選擇的快篩資訊 */
+  nowSelectAntigenSelfTestStore: AntigenSelfTestStore | null = null
 
   constructor(
     private api: ApiService,
@@ -73,7 +77,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.map = new mapboxgl.Map({
       container: this.mapElement.nativeElement,
       style: this.style,
-      zoom: 13,
+      zoom: 12,
       center: [this.lng, this.lat]
     });
 
@@ -92,7 +96,6 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.api.get('https://data.nhi.gov.tw/resource/Nhi_Fst/Fstdata.csv', { responseType: 'text' }).subscribe((res) => {
       const data = JSON.parse(this.csvJSON(res));
       this.markers = data;
-      console.log(data);
       if (ok) {
         ok();
       }
@@ -110,13 +113,21 @@ export class AppComponent implements OnInit, AfterViewInit {
       var currentline = lines[i].split(",");
 
       for (var j = 0; j < headers.length; j++) {
-        obj[headers[j]] = currentline[j];
+        obj[this.mapKey(headers[j])] = currentline[j];
       }
 
       result.push(obj);
     }
 
     return JSON.stringify(result); //JSON
+  }
+
+  /** 參數名稱對應表 */
+  mapKey(Key: string): string {
+    // 去除空格
+    Key = Key.replace('\r', '');
+    // 回傳對應Key
+    return AntigenSelfTestStoreMap[Key as AntigenSelfTestStoreType]
   }
 
   /** 新增標記點 */
@@ -139,8 +150,8 @@ export class AppComponent implements OnInit, AfterViewInit {
         // 轉換標記點格式
         let newMarker: GeoJSON[] = [];
         this.markers.map((item: any) => {
-          if (item.經度 && item.緯度) {
-            newMarker.push(new GeoJSON([item.經度, item.緯度], item));
+          if (item.lan && item.lat) {
+            newMarker.push(new GeoJSON([item.lan, item.lat], item));
           }
         })
 
@@ -155,13 +166,26 @@ export class AppComponent implements OnInit, AfterViewInit {
           type: 'symbol',
           layout: {
             'icon-image': 'AntigenSelfTest-marker',
+            'text-field': ['get', 'posName'],
+            'text-font': [
+              'Open Sans Semibold',
+            ],
+            'text-offset': [-0.3, 1.5],
           },
+          paint: {
+            "text-color": "#414141"
+          }
         })
 
         // 標記點被點擊
         this.map.on('click', 'COVID19AntigenSelfTestLayer', (e: any) => {
-          const coordinates = [e.lngLat.lng, e.lngLat.lat];
-          console.log(e.features[0].properties);
+          // 載入現在選取資訊
+          this.nowSelectAntigenSelfTestStore = e.features[0].properties as AntigenSelfTestStore;
+          // 移動定位
+          this.map.flyTo({
+            center: [e.lngLat.lng + 0.001, e.lngLat.lat],
+            zoom: 15
+          })
         });
 
         // 標記點滑鼠移入
@@ -175,5 +199,22 @@ export class AppComponent implements OnInit, AfterViewInit {
         });
       });
     });
+  }
+
+  /** 前往地址 */
+  goAddress(nowSelectAntigenSelfTestStore: AntigenSelfTestStore | null): void {
+    if (nowSelectAntigenSelfTestStore) {
+      let addString = `https://www.google.com.tw/maps/place/${nowSelectAntigenSelfTestStore.posAddress}/@${nowSelectAntigenSelfTestStore.lat},${nowSelectAntigenSelfTestStore.lan},15z`;
+      open(addString);
+    }
+  }
+
+  /** 撥打電話 */
+  goPhone(nowSelectAntigenSelfTestStore: AntigenSelfTestStore | null): void {
+    if (nowSelectAntigenSelfTestStore) {
+      if (nowSelectAntigenSelfTestStore.posPhone) {
+        document.location.href = `tel:${nowSelectAntigenSelfTestStore.posPhone}`;
+      }      
+    }
   }
 }

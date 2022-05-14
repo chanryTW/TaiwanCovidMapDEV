@@ -3,7 +3,65 @@
   <div class="mapBlock" #mapElement></div>
   <!-- 側邊欄區塊 -->
   <div class="sideBlock">
-    <app-theme></app-theme>
-    <h3>台灣 Covid 物資地圖</h3>
+    <div class="header">
+      <div class="title">
+        <h3>台灣 COVID-19 物資地圖</h3>
+        <h6>Taiwan COVID-19 Antigen Self-Test</h6>
+      </div>
+    </div>
+
+    <div class="content">
+      <ng-container *ngIf="nowSelectAntigenSelfTestStore">
+        <div class="item panel">
+          <span class="number">{{ nowSelectAntigenSelfTestStore.quantity }}</span> / 份
+          <h5>剩餘快篩</h5>
+          <span>
+            最後更新時間：{{ nowSelectAntigenSelfTestStore.time }}
+          </span>
+        </div>
+
+        <div class="item flexNoWrapStartCenter">
+          <mat-icon class="matIcon" svgIcon="store"></mat-icon>
+          <div>
+            <h5>{{ nowSelectAntigenSelfTestStore.posName }}</h5>
+          </div>
+        </div>
+        
+        <div class="item flexNoWrapStartCenter">
+          <mat-icon class="matIcon" svgIcon="needle"></mat-icon>
+          <div>
+            {{ nowSelectAntigenSelfTestStore.company }}
+          </div>
+        </div>
+        
+        <div class="item flexNoWrapStartCenter cursor" (click)="goAddress(nowSelectAntigenSelfTestStore)">
+          <mat-icon class="matIcon" svgIcon="map-marker"></mat-icon>
+          <div>
+            {{ nowSelectAntigenSelfTestStore.posAddress }}<br>
+            <span class="tip">前往 Google 導航</span>
+          </div>
+        </div>
+
+          <a class="item flexNoWrapStartCenter cursor" [href]="'tel:' + nowSelectAntigenSelfTestStore.posPhone">
+            <mat-icon class="matIcon" svgIcon="phone"></mat-icon>
+            <div>
+              {{ nowSelectAntigenSelfTestStore.posPhone }}<br>
+              <span class="tip">撥打電話</span>
+            </div>
+          </a>
+
+        <div class="item flexNoWrapStartCenter">
+          <mat-icon class="matIcon" svgIcon="clipboard-text"></mat-icon>
+          <div>
+            <h6>備註</h6>
+            {{ nowSelectAntigenSelfTestStore.remark }}
+          </div>
+        </div>
+      </ng-container>
+    </div>
+
+    <div class="bottom">
+      <app-theme></app-theme>
+    </div>
   </div>
 </article>

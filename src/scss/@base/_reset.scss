@@ -84,7 +84,7 @@ video {
   border: 0;
   font: inherit;
   font-family: $fontFamily;
-  font-weight: $fwN;
+  font-weight: $fwB;
   font-size: 100%;
   vertical-align: baseline;
   color: theme-var($--font);
@@ -156,7 +156,7 @@ a {
   &:hover,
   &:focus,
   &:active {
-    color: theme-var($--hover) !important;
+    text-decoration: none;
   }
 }
 

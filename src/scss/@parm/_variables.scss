@@ -1,4 +1,4 @@
-////////////////////////////// 文字
+// 文字
 $fontFamily: Helvetica, '蘋方-繁', 'Noto Sans TC' ,'PingFang TC', '微軟正黑體', 'Microsoft JhengHei',
   'Helvetica Neue', 'Helvetica', 'Arial', 'Utkal', sans-serif;
 
@@ -19,10 +19,10 @@ $borderR: 3px;
 $borderRMin2: 5px;
 $borderRMin: 10px;
 $borderRMax: 20px;
-$borderLogin: 100px;
 
 // 陰影
-$shadow: 0 1px 3px rgb(0 0 0 / 12%), 0 1px 2px rgb(0 0 0 / 24%);
+$shadow: 0 -2px 8px 0 rgb(0 0 0 / 3%), 0 6px 19px 0 rgb(0 0 0 / 6%);
+$shadowL: 0 -2px 8px 0 rgb(0 0 0 / 3%), 0 6px 19px 0 rgb(0 0 0 / 6%);
 
 // input + maticon 的(L|R)位置
 $matIconSpace: 9px;
@@ -33,6 +33,7 @@ $comPadding: $space - 7 $space - 5;
 $comPaddingL: $space - 5 $space;
 
 $padding: 15px;
+$margin: 15px;
 
 $navWL: 230px;
 $navWM: 60px;
@@ -43,13 +44,13 @@ $LBlockW: 280px;
 $check: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23ffffff' d='M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z'/%3E%3C/svg%3E";
 $check_indeterminate: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' enable-background='new 0 0 24 24' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cg%3E%3Crect fill='none' fill-rule='evenodd' height='24' width='24'/%3E%3Cg%3E%3Crect fill-rule='evenodd' height='2' width='16' x='4' y='11'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E";
 
-////////////////////////////// 文字粗細體
+// 文字粗細體
 $fwL: 100;
 $fw3: 300;
 $fwN: normal;
 $fwB: bold;
 
-////////////////////////////// z-index
+// z-index
 $z-idx--2: -2;
 $z-idx--1: -1;
 $z-idx-1: 999999; // alert
@@ -57,7 +58,7 @@ $z-idx-2: 999998; // loading
 $z-idx-popupBG: 999997; // popupBG
 $z-idx-fixBlock: 999996; // 左右固定區塊
 
-////////////////////////////// 裝置
+// 裝置
 $screenSizeSpace: 0.02;
 $breakpoint-sm: 576px;
 $breakpoint-md: 768px;
@@ -72,7 +73,7 @@ $ipadCMax: $breakpoint-md; // 768
 $ipadCMin: $breakpoint-md - $screenSizeSpace; // 767.98
 $mobile: $breakpoint-sm; // 576
 
-////////////////////////////// 顏色
+// 顏色
 // 固定
 $color0: transparent;
 $white: #fff;
@@ -85,7 +86,7 @@ $blue: #6895c4;
 $purple: #8a7fc4;
 $gray: #939393;
 $greenBlue: #8cd6dc;
-$main: $orange;
+$main: #A0C7EE;
 
 // 定義var(--NAME)名稱
 // 基本
@@ -103,7 +104,9 @@ $--greenBlue: --greenBlue;
 $--main: --main;
 
 // 自定義
-$--blockBG: --blockBG;
+$--headerBG: --headerBG;
+$--panel: --panel;
+$--itemBG: --itemBG;
 
 // 登入頁面, 因為深色與淺色是一樣的
 $--loginBG: --loginBG;
@@ -227,8 +230,10 @@ $dareknShared2: #717171;
 
 // 暗黑
 $theme-map-darken: (
-  $--blockBG: $white,
-  $--font: $black,
+  $--headerBG: $black,
+  $--font: $white,
+  $--panel: #c5dff6,
+  $--itemBG: rgba(0, 0, 0, 0.5) ,
 
   $--loginBG: $black,
   $--ipt: $iptD,
@@ -290,8 +295,10 @@ $lightsShared2: $iptD;
 
 // 明亮
 $theme-map-lights: (
-  $--blockBG: $black,
-  $--font: $white,
+  $--headerBG: rgba(255, 255, 255, 0.5),
+  $--font: $black,
+  $--panel: rgba(196, 222, 245, 0.5),
+  $--itemBG: rgba(255, 255, 255, 0.5) ,
 
   $--loginBG: $white,
   $--ipt: $iptL,
@@ -308,7 +315,7 @@ $theme-map-lights: (
   $--th: #b28060,
   $--subTable: #f9f7f5,
   $--LRBlock: $white,
-  $--rangeBG: #ded8d5,
+  $--rangeBG: #718cb5,
   $--caption: #93877d,
   $--contentTitle: $iptL,
   $--tableUpt: #fbf4f0,
