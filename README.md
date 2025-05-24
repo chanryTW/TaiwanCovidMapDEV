@@ -10,13 +10,17 @@
 - 即時數據更新（已停止）
 
 ## 技術架構
-- 前端框架：React.js
-- 地圖服務：Leaflet
+- 前端框架：Angular 13.3.0
+- 開發語言：TypeScript
+- UI 組件庫：Angular Material
+- 地圖服務：Mapbox GL
+- 狀態管理：RxJS
 - 數據來源：衛生福利部疾病管制署（資料更新已停止）
 
 ## 系統需求
 - Node.js 14.0 或以上版本
 - npm 6.0 或以上版本
+- Angular CLI 13.3.5
 
 ## 安裝說明
 ```bash
@@ -30,7 +34,7 @@ cd TaiwanCovidMapDEV
 npm install
 
 # 啟動開發伺服器
-npm start
+ng serve
 ```
 
 ## 注意事項
